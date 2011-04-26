@@ -10,13 +10,9 @@ package proyectosimulacion;
  * @author Diego
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-
+    public static void main (String args []) {
+        FPrincipal.main(args);
+        //System.exit(0);
+        //FPrincipal fp=new FPrincipal();
     }
-
 }
