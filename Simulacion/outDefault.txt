@@ -1,0 +1,8 @@
+Expresion = x1*(a-b) - b*x2
+
+Variables = x1, x2
+Constantes = a,b
+
+a = -5.002485355730515
+b = -3.0010416524802626
+Error = 9.822439962443347E-7
