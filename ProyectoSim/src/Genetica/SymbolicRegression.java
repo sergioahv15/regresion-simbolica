@@ -1,16 +1,5 @@
 package Genetica;
 
-/*
- * This file is part of JGAP.
- *
- * JGAP offers a dual license model containing the LGPL as well as the MPL.
- *
- * For licensing information please see the file license.txt included with JGAP
- * or have a look at the top of class org.jgap.Chromosome which representatively
- * includes the JGAP license policy applicable for any file delivered with JGAP.
- */
-
-
 import java.io.*;
 import java.util.*;
 
@@ -893,13 +882,12 @@ public class SymbolicRegression
    *
    * @author Hakan Kjellerstrand
    */
-  public static void main(String[] args, int caso)
-      throws Exception {
+  public static void main(String[] args, int caso) throws Exception {
     // Use the log4j configuration
     // Log to stdout instead of file
     // -----------------------------
 //        org.apache.log4j.PropertyConfigurator.configure("log4j.properties");
-    LOGGER.addAppender(new ConsoleAppender(new SimpleLayout(), "System.out"));
+    //LOGGER.addAppender(new ConsoleAppender(new SimpleLayout(), "System.out"));
     //
     // Read a configuration file, or not...
     //
@@ -908,7 +896,7 @@ public class SymbolicRegression
     if(caso == 0){
       //Los datos los modificamos desde la interfaz
     }
-    else if(caso == 1) {
+    /*else if(caso == 1) {
       //String filename = args[0];//e.g. "fahrenheit_celsius.conf"
       //readFile(filename);
       readFile("C:/Users/Diego/Downloads/jgap_3.5_full/examples/src/examples/gp/symbolicRegression/sin_formula.conf");
@@ -938,7 +926,7 @@ public class SymbolicRegression
       functions = "Multiply,Divide,Add,Subtract".split(",");
       variableNames = "F1,F2,F3,F4".split(",");
       presentation = "Fibonacci series";
-    }
+    }*/
     // Present the problem
     // -------------------
     ResulImp="";
@@ -1258,47 +1246,44 @@ public class SymbolicRegression
       }
     }
   }
-  /**
-   * Outputs the best solution until now at standard output.
-   *
-   * This is stolen (and somewhat edited) from GPGenotype.outputSolution
-   * which used log4j.
-   *
-   * @param a_best the fittest ProgramChromosome
-   *
-   * @author Hakan Kjellerstrand (originally by Klaus Meffert)
-   */
+
+  //Resultados del algoritmo
   public static void myOutputSolution(IGPProgram a_best, int gen) {
-    String freeMB = SystemKit.niceMemory(SystemKit.getFreeMemoryMB());
+    /*String freeMB = SystemKit.niceMemory(SystemKit.getFreeMemoryMB());
     ResulImp+="\n"+"Evolving generation "
                        + (gen)
                        + "/" + numEvolutions
                        + ", memory free: "
                        + freeMB
-                       + " MB";///
-    System.out.println("Evolving generation "
+                       + " MB";///*/
+
+      /*ResulImp+="Generacion "
+                       + (gen)
+                       + "/" + numEvolutions;
+
+    /*System.out.println("Evolving generation "
                        + (gen)
                        + "/" + numEvolutions
                        + ", memory free: "
                        + freeMB
-                       + " MB");
+                       + " MB");*/
     if (a_best == null) {
-      ResulImp+="\n"+"No best solution (null)";///
-      System.out.println("No best solution (null)");
+      ResulImp+="\n"+"No se encontro una buena solucion tal vez no sea funcion!!";///
+      //System.out.println("No best solution (null)");
       return;
     }
     double bestValue = a_best.getFitnessValue();
     if (Double.isInfinite(bestValue)) {
-      ResulImp+="\n"+"No best solution (infinite)";///
-      System.out.println("No best solution (infinite)");
+      ResulImp+="\n"+"No se encontro una buena solucion tal vez no sea funcion!!";///
+      //System.out.println("No best solution (infinite)");
       return;
     }
-    ResulImp+="\n"+"Best solution fitness: " +
+    ResulImp+="\n"+"Mejor fitness encontrado: " +
                        NumberKit.niceDecimalNumber(bestValue, 2);///
-    System.out.println("Best solution fitness: " +
-                       NumberKit.niceDecimalNumber(bestValue, 2));
-    ResulImp+="\n"+"Best solution: " + a_best.toStringNorm(0);///
-    System.out.println("Best solution: " + a_best.toStringNorm(0));
+    /*System.out.println("Best solution fitness: " +
+                       NumberKit.niceDecimalNumber(bestValue, 2));*/
+    ResulImp+="\n"+"Mejor Solucion: " + a_best.toStringNorm(0);///
+    //System.out.println("Best solution: " + a_best.toStringNorm(0));
     String depths = "";
     int size = a_best.size();
     for (int i = 0; i < size; i++) {
@@ -1307,13 +1292,13 @@ public class SymbolicRegression
       }
       depths += a_best.getChromosome(i).getDepth(0);
     }
-    if (size == 1) {
+    /*if (size == 1) {
       ResulImp+="\n"+"Depth of chrom: " + depths;///
       System.out.println("Depth of chrom: " + depths);
     }
     else {
       ResulImp+="\n"+"Depths of chroms: " + depths;///
       System.out.println("Depths of chroms: " + depths);
-    }
+    }*/
   }
 }
