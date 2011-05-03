@@ -3,7 +3,6 @@ package Genetica;
 import java.io.*;
 import java.util.*;
 
-import org.apache.log4j.*;
 import org.jgap.*;
 import org.jgap.gp.*;
 import org.jgap.gp.function.*;
@@ -46,9 +45,8 @@ import org.jgap.util.*;
  *
  * @since 3.5
  */
-public class SymbolicRegression
-    extends GPProblem {
-  private transient static Logger LOGGER = Logger.getLogger(SymbolicRegression.class);
+public class SymbolicRegression extends GPProblem {
+//  private transient static Logger LOGGER = Logger.getLogger(SymbolicRegression.class);
 
   /*
    * public variables which may be changed by configuration file
@@ -194,8 +192,7 @@ public class SymbolicRegression
    * @return GPGenotype
    * @throws InvalidConfigurationException
    */
-  public GPGenotype create()
-      throws InvalidConfigurationException {
+  public GPGenotype create() throws InvalidConfigurationException {
     GPConfiguration conf = getGPConfiguration();
     // At first, we define the return type of the GP program.
     // ------------------------------------------------------
@@ -275,16 +272,38 @@ public class SymbolicRegression
         variables[variableIndex] = Variable.create(conf, variableName,
             CommandGene.DoubleClass);
         nodeSets[0][variableIndex] = variables[variableIndex];
-        ResulImp+="\n"+"input variable: " + variables[variableIndex];///
-        System.out.println("input variable: " + variables[variableIndex]);
+        ResulImp+="\n"+"Variables de entrada: " + variables[variableIndex];///
+        //System.out.println("input variable: " + variables[variableIndex]);
         variableIndex++;
       }
     }
     // assign the functions/terminals
     // ------------------------------
+    ResulImp+="\n"+"Operaciones definidas: ";
     for (int i = 0; i < command_len; i++) {
-      ResulImp+="\n"+"function1: " + commands[i];///
-      System.out.println("function1: " + commands[i]);
+      //ResulImp+="" + commands[i];///
+      //System.out.println("function1: " + commands[i]);
+        System.out.println("comandos "+commands[i]);
+      if(commands[i].toString().contains("+"))
+          ResulImp+="+, ";
+      if(commands[i].toString().contains("-")  && !commands[i].toString().contains("&"))
+          ResulImp+="C, ";
+      if(commands[i].toString().contains("-")  && commands[i].toString().contains("&"))
+          ResulImp+="-, ";
+      if(commands[i].toString().contains("*"))
+          ResulImp+="*, ";
+      if(commands[i].toString().contains("/"))
+          ResulImp+="/, ";
+      if(commands[i].toString().contains("sqrt"))
+          ResulImp+="raiz, ";
+      if(commands[i].toString().contains("^"))
+          ResulImp+="exp, ";
+      if(commands[i].toString().contains("log"))
+          ResulImp+="log, ";
+      if(commands[i].toString().contains("sine"))
+          ResulImp+="sin, ";
+      if(commands[i].toString().contains("cosine"))
+          ResulImp+="cos, ";
       nodeSets[0][i + numInputVariables] = commands[i];
     }
     // ADF functions in the second array in nodeSets
@@ -294,8 +313,8 @@ public class SymbolicRegression
       int adfLength = adfCommands.length;
       nodeSets[1] = new CommandGene[adfLength];
       for (int i = 0; i < adfLength; i++) {
-        ResulImp+="\n"+"function2: " + adfCommands[i];///
-        System.out.println("function2: " + adfCommands[i]);
+        //ResulImp+="\n"+"Operaciones: " + adfCommands[i];///
+        //System.out.println("function2: " + adfCommands[i]);
         nodeSets[1][i] = adfCommands[i];
       }
     }
@@ -450,8 +469,8 @@ public class SymbolicRegression
             }
             else if ("adf_arity".equals(row[0])) {
               adfArity = Integer.parseInt(row[1]);
-              ResulImp+="\n"+"ADF arity " + adfArity;///
-              System.out.println("ADF arity " + adfArity);
+              //ResulImp+="\n"+"ADF arity " + adfArity;///
+              //System.out.println("ADF arity " + adfArity);
               if (adfArity > 0) {
                 useADF = true;
               }
@@ -930,8 +949,8 @@ public class SymbolicRegression
     // Present the problem
     // -------------------
     ResulImp="";
-    ResulImp+="\n"+"Presentation: " + presentation;///
-    System.out.println("Presentation: " + presentation);
+    //ResulImp+="\n"+"Presentation: " + presentation;///
+    //System.out.println("Presentation: " + presentation);
     if (outputVariable == null) {
       outputVariable = numInputVariables;
     }
@@ -941,10 +960,10 @@ public class SymbolicRegression
         variableNames[i] = "V" + i;
       }
     }
-    ResulImp+="\n"+"output_variable: " + variableNames[outputVariable] +
+    /*ResulImp+="\n"+"output_variable: " + variableNames[outputVariable] +
                        " (index: " + outputVariable + ")";///
     System.out.println("output_variable: " + variableNames[outputVariable] +
-                       " (index: " + outputVariable + ")");
+                       " (index: " + outputVariable + ")");*/
     // Setup the algorithm's parameters.
     // ---------------------------------
     GPConfiguration config = new GPConfiguration();
@@ -1025,14 +1044,14 @@ public class SymbolicRegression
     //
     // I'm rolling my own to to be able to control output better etc.
     //
-    ResulImp+="\n"+"Creating initial population";///
+    /*ResulImp+="\n"+"Creating initial population";///
     System.out.println("Creating initial population");
     ResulImp+="\n"+"Mem free: "
                        + SystemKit.niceMemory(SystemKit.getTotalMemoryMB()) +
                        " MB";///
     System.out.println("Mem free: "
                        + SystemKit.niceMemory(SystemKit.getTotalMemoryMB()) +
-                       " MB");
+                       " MB");*/
     IGPProgram fittest = null;
     double bestFit = -1.0d;
     String bestProgram = "";
@@ -1053,10 +1072,10 @@ public class SymbolicRegression
       double fitness = thisFittest.getFitnessValue();
       if (showSimiliar || showPopulation) {
         if (showPopulation) {
-          ResulImp+="\n"+"Generation " + gen +
+         /* ResulImp+="\n"+"Generation " + gen +
                              " (show whole population, sorted)";//
           System.out.println("Generation " + gen +
-                             " (show whole population, sorted)");
+                             " (show whole population, sorted)");*/
         }
         pop.sortByFitness();
         for (IGPProgram p : pop.getGPPrograms()) {
@@ -1073,8 +1092,8 @@ public class SymbolicRegression
           if (showPopulation) {
             String prg = p.toStringNorm(0);
             int sz = p.size();
-            ResulImp+="\n"+"\tprogram: " + prg + " fitness: " + fit;///
-            System.out.println("\tprogram: " + prg + " fitness: " + fit);
+            //ResulImp+="\n"+"\tprogram: " + prg + " fitness: " + fit;///
+            //System.out.println("\tprogram: " + prg + " fitness: " + fit);
           }
         }
       }
@@ -1113,11 +1132,11 @@ public class SymbolicRegression
     // ----------------------------------------------
     // gp.outputSolution(gp.getAllTimeBest());
 
-    ResulImp+="\n"+"\nAll time best (from generation " + bestGen + ")";///
-    System.out.println("\nAll time best (from generation " + bestGen + ")");
+    //ResulImp+="\n"+"\nAll time best (from generation " + bestGen + ")";///
+    //System.out.println("\nAll time best (from generation " + bestGen + ")");
     myOutputSolution(fittest, numEvolutions);
-    ResulImp+="\n"+"applicationData: " + fittest.getApplicationData();///
-    System.out.println("applicationData: " + fittest.getApplicationData());
+    //ResulImp+="\n"+"applicationData: " + fittest.getApplicationData();///
+    //System.out.println("applicationData: " + fittest.getApplicationData());
     // Create a graphical tree of the best solution's program and write it to
     // a PNG file.
     // ----------------------------------------------------------------------
@@ -1125,9 +1144,9 @@ public class SymbolicRegression
 
     endTime = System.currentTimeMillis();
     long elapsedTime = endTime - startTime;
-    ResulImp+="\n"+"\nTotal time " + elapsedTime + "ms";///
-    System.out.println("\nTotal time " + elapsedTime + "ms");
-    if (showSimiliar) {
+    //ResulImp+="\n"+"\nTotal time " + elapsedTime + "ms";///
+   // System.out.println("\nTotal time " + elapsedTime + "ms");
+   /* if (showSimiliar) {
       ResulImp+="\n"+"\nAll solutions with the best fitness (" + bestFit +
                          "):";///
       System.out.println("\nAll solutions with the best fitness (" + bestFit +
@@ -1137,7 +1156,7 @@ public class SymbolicRegression
         ResulImp+="\n"+ p + " (" + similiar.get(p) + ")";///
         System.out.println(p + " (" + similiar.get(p) + ")");
       }
-    }
+    }*/
     //System.exit(0);
   }
 
@@ -1148,8 +1167,7 @@ public class SymbolicRegression
    * between expected Y and actual Y is the fitness, the lower the better (as
    * it is a defect rate here).
    */
-  public static class FormulaFitnessFunction
-      extends GPFitnessFunction {
+  public static class FormulaFitnessFunction extends GPFitnessFunction {
     protected double evaluate(final IGPProgram a_subject) {
       return computeRawFitness(a_subject);
     }
@@ -1211,8 +1229,8 @@ public class SymbolicRegression
       // -------------------------------------------------------
       if (error <= bumpValue && bumpPerfect) {
         if (!foundPerfect) {
-          System.out.println("Found a perfect solution with err " + error +
-                             "!. Bump up the values!");
+          //System.out.println("Found a perfect solution with err " + error +
+            //                 "!. Bump up the values!");
           foundPerfect = true;
         }
         ProgramChromosome chrom = ind.getChromosome(0);

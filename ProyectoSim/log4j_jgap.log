@@ -300,3 +300,55 @@
 [03.05.2011 00:39:03,272] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
 [03.05.2011 00:39:03,288] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
 [03.05.2011 00:39:03,366] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 00:49:51,551] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:49:51,557] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 00:49:51,573] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:49:51,637] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:00:25,333] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:00:25,338] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:00:25,353] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:00:25,420] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:00:55,898] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:00:55,905] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:00:55,920] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:00:55,991] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:08:58,320] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:08:58,326] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:08:58,340] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:08:58,408] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:10:51,324] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:10:51,330] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:10:51,345] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:10:51,411] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:15:02,030] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:15:02,036] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:15:02,050] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:15:02,116] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:16:02,561] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:16:02,567] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:16:02,581] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:16:02,643] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:17:29,400] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:17:29,407] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:17:29,421] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:17:29,483] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:22:06,853] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:22:06,859] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:22:06,874] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:22:06,939] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:24:24,508] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:24:24,514] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:24:24,528] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:24:24,592] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:26:28,416] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:26:28,421] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:26:28,436] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:26:28,498] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:27:40,852] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:27:40,859] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:27:40,875] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:27:40,933] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 01:34:25,966] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 01:34:25,972] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 01:34:25,987] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 01:34:26,047] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
