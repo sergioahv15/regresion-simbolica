@@ -1,8 +1,17 @@
 package Genetica;
 
+import Interfaz.Principal;
 import java.io.*;
 import java.util.*;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jgap.*;
 import org.jgap.gp.*;
 import org.jgap.gp.function.*;
@@ -55,8 +64,10 @@ public class SymbolicRegression extends GPProblem {
 
   // number of variables to use (output variable is excluded)
 
+  public static Principal ventana;
+  
   //Cadena para imprimir en la interface
-  public static String ResulImp;
+  public static Double[] results;
 
   public static int numInputVariables;
 
@@ -272,40 +283,42 @@ public class SymbolicRegression extends GPProblem {
         variables[variableIndex] = Variable.create(conf, variableName,
             CommandGene.DoubleClass);
         nodeSets[0][variableIndex] = variables[variableIndex];
-        ResulImp+="\n"+"Variables de entrada: " + variables[variableIndex];///
-        //System.out.println("input variable: " + variables[variableIndex]);
+        ventana.RenovarText("\n"+"Variables de Entrada: " + variables[variableIndex]);///
+        System.out.println("input variable: " + variables[variableIndex]);
         variableIndex++;
       }
     }
     // assign the functions/terminals
     // ------------------------------
-    ResulImp+="\n"+"Operaciones definidas: ";
-    for (int i = 0; i < command_len; i++) {
+
+      ventana.RenovarText("\n"+"Operaciones definidas: ");///
+      for (int i = 0; i < command_len; i++) {
       //ResulImp+="" + commands[i];///
       //System.out.println("function1: " + commands[i]);
         System.out.println("comandos "+commands[i]);
       if(commands[i].toString().contains("+"))
-          ResulImp+="+, ";
+          ventana.RenovarText("+, ");
       if(commands[i].toString().contains("-")  && !commands[i].toString().contains("&"))
-          ResulImp+="C, ";
+          ventana.RenovarText("C, ");
       if(commands[i].toString().contains("-")  && commands[i].toString().contains("&"))
-          ResulImp+="-, ";
+          ventana.RenovarText("-, ");
       if(commands[i].toString().contains("*"))
-          ResulImp+="*, ";
+          ventana.RenovarText("*, ");
       if(commands[i].toString().contains("/"))
-          ResulImp+="/, ";
+          ventana.RenovarText("/, ");
       if(commands[i].toString().contains("sqrt"))
-          ResulImp+="raiz, ";
+          ventana.RenovarText("raiz, ");
       if(commands[i].toString().contains("^"))
-          ResulImp+="exp, ";
+          ventana.RenovarText("exp, ");
       if(commands[i].toString().contains("log"))
-          ResulImp+="log, ";
+          ventana.RenovarText("log, ");
       if(commands[i].toString().contains("sine"))
-          ResulImp+="sin, ";
+          ventana.RenovarText("sin, ");
       if(commands[i].toString().contains("cosine"))
-          ResulImp+="cos, ";
+          ventana.RenovarText("cos, ");
       nodeSets[0][i + numInputVariables] = commands[i];
     }
+
     // ADF functions in the second array in nodeSets
     if (useADF) {
       CommandGene[] adfCommands = makeCommands(conf, adfFunctions, lowerRange,
@@ -313,7 +326,7 @@ public class SymbolicRegression extends GPProblem {
       int adfLength = adfCommands.length;
       nodeSets[1] = new CommandGene[adfLength];
       for (int i = 0; i < adfLength; i++) {
-        //ResulImp+="\n"+"Operaciones: " + adfCommands[i];///
+        //ventana.RenovarText("\n"+"function2: " + adfCommands[i]);///
         //System.out.println("function2: " + adfCommands[i]);
         nodeSets[1][i] = adfCommands[i];
       }
@@ -469,7 +482,7 @@ public class SymbolicRegression extends GPProblem {
             }
             else if ("adf_arity".equals(row[0])) {
               adfArity = Integer.parseInt(row[1]);
-              //ResulImp+="\n"+"ADF arity " + adfArity;///
+              //ventana.RenovarText("\n"+"ADF arity " + adfArity);///
               //System.out.println("ADF arity " + adfArity);
               if (adfArity > 0) {
                 useADF = true;
@@ -901,132 +914,8 @@ public class SymbolicRegression extends GPProblem {
    *
    * @author Hakan Kjellerstrand
    */
-  public static void main(String[] args, int caso) throws Exception {
-    // Use the log4j configuration
-    // Log to stdout instead of file
-    // -----------------------------
-//        org.apache.log4j.PropertyConfigurator.configure("log4j.properties");
-    //LOGGER.addAppender(new ConsoleAppender(new SimpleLayout(), "System.out"));
-    //
-    // Read a configuration file, or not...
-    //
-
-    //if (args.length > 0) {
-    if(caso == 0){
-      //Los datos los modificamos desde la interfaz
-    }
-    /*else if(caso == 1) {
-      //String filename = args[0];//e.g. "fahrenheit_celsius.conf"
-      //readFile(filename);
-      readFile("C:/Users/Diego/Downloads/jgap_3.5_full/examples/src/examples/gp/symbolicRegression/sin_formula.conf");
-    }
-    else {
-      // Default problem
-      // Fibonacci series, with three input variables to make it
-      // somewhat harder.
-      // -------------------------------------------------------
-      numRows = 21;
-      numInputVariables = 3;
-      // Note: The last array is the output array
-      int[][] indata = { {1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377,
-          610, 987, 1597, 2584, 4181, 6765, 10946}, {1, 2, 3, 5, 8, 13, 21, 34,
-          55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711},
-          {2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584,
-          4181, 6765, 10946, 17711, 28657}, {3, 5, 8, 13, 21, 34, 55, 89, 144,
-          233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657,
-          46368}
-      };
-      data = new Double[numInputVariables + 1][numRows];
-      for (int i = 0; i < numInputVariables + 1; i++) {
-        for (int j = 0; j < numRows; j++) {
-          data[i][j] = new Double(indata[i][j]);
-        }
-      }
-      functions = "Multiply,Divide,Add,Subtract".split(",");
-      variableNames = "F1,F2,F3,F4".split(",");
-      presentation = "Fibonacci series";
-    }*/
-    // Present the problem
-    // -------------------
-    ResulImp="";
-    //ResulImp+="\n"+"Presentation: " + presentation;///
-    //System.out.println("Presentation: " + presentation);
-    if (outputVariable == null) {
-      outputVariable = numInputVariables;
-    }
-    if (variableNames == null) {
-      variableNames = new String[numInputVariables + 1];
-      for (int i = 0; i < numInputVariables + 1; i++) {
-        variableNames[i] = "V" + i;
-      }
-    }
-    /*ResulImp+="\n"+"output_variable: " + variableNames[outputVariable] +
-                       " (index: " + outputVariable + ")";///
-    System.out.println("output_variable: " + variableNames[outputVariable] +
-                       " (index: " + outputVariable + ")");*/
-    // Setup the algorithm's parameters.
-    // ---------------------------------
-    GPConfiguration config = new GPConfiguration();
-    // We use a delta fitness evaluator because we compute a defect rate, not
-    // a point score!
-    // ----------------------------------------------------------------------
-    config.setGPFitnessEvaluator(new DeltaGPFitnessEvaluator());
-    config.setMaxInitDepth(maxInitDepth);
-    config.setPopulationSize(populationSize);
-    // Default selectionMethod is is TournamentSelector(3)
-    if (tournamentSelectorSize > 0) {
-      config.setSelectionMethod(new TournamentSelector(tournamentSelectorSize));
-    }
-    /**
-     * The maximum depth of an individual resulting from crossover.
-     */
-    config.setMaxCrossoverDepth(maxCrossoverDepth);
-    config.setFitnessFunction(new SymbolicRegression.FormulaFitnessFunction());
-    /**
-     * @param a_strict true: throw an error during evolution in case a situation
-     * is detected where no function or terminal of a required type is declared
-     * in the GPConfiguration; false: don't throw an error but try a completely
-     * different combination of functions and terminals
-     */
-    // config.setStrictProgramCreation(true);
-    config.setStrictProgramCreation(false);
-    // Default from GPConfiguration.java
-
-    /**
-     * In crossover: If random number (0..1) < this value, then choose a function
-     * otherwise a terminal.
-     */
-    config.setFunctionProb(functionProb);
-    /**
-     * The probability that a reproduction operation is chosen during evolution.
-     * Must be between 0.0d and 1.0d. crossoverProb + reproductionProb must equal
-     * 1.0d.
-     */
-    config.setReproductionProb(reproductionProb);
-    /**
-     * The probability that a node is mutated during growing a program.
-     */
-    config.setMutationProb(mutationProb);
-    /**
-     * The probability that the arity of a node is changed during growing a
-     * program.
-     */
-    config.setDynamizeArityProb(dynamizeArityProb);
-    /**
-     * Percentage of the population that will be filled with new individuals
-     * during evolution. Must be between 0.0d and 1.0d.
-     */
-    config.setNewChromsPercent(newChromsPercent);
-    /**
-     * The minimum depth of an individual when the world is created.
-     */
-    config.setMinInitDepth(minInitDepth);
-    /**
-     * If m_strictProgramCreation is false: Maximum number of tries to construct
-     * a valid program.
-     */
-    config.setProgramCreationMaxTries(programCreationMaxTries);
-    GPProblem problem = new SymbolicRegression(config);
+  public static void main(String[] args, int caso, Principal frame, GPProblem problem) throws Exception {
+    
     // Create the genotype of the problem, i.e., define the GP commands and
     // terminals that can be used, and constrain the structure of the GP
     // program.
@@ -1044,11 +933,11 @@ public class SymbolicRegression extends GPProblem {
     //
     // I'm rolling my own to to be able to control output better etc.
     //
-    /*ResulImp+="\n"+"Creating initial population";///
+    /*ventana.RenovarText("\n"+"Creating initial population");///
     System.out.println("Creating initial population");
-    ResulImp+="\n"+"Mem free: "
+    ventana.RenovarText("\n"+"Mem free: "
                        + SystemKit.niceMemory(SystemKit.getTotalMemoryMB()) +
-                       " MB";///
+                       " MB");///
     System.out.println("Mem free: "
                        + SystemKit.niceMemory(SystemKit.getTotalMemoryMB()) +
                        " MB");*/
@@ -1072,8 +961,8 @@ public class SymbolicRegression extends GPProblem {
       double fitness = thisFittest.getFitnessValue();
       if (showSimiliar || showPopulation) {
         if (showPopulation) {
-         /* ResulImp+="\n"+"Generation " + gen +
-                             " (show whole population, sorted)";//
+          /*ventana.RenovarText("\n"+"Generation " + gen +
+                             " (show whole population, sorted)");//
           System.out.println("Generation " + gen +
                              " (show whole population, sorted)");*/
         }
@@ -1092,8 +981,8 @@ public class SymbolicRegression extends GPProblem {
           if (showPopulation) {
             String prg = p.toStringNorm(0);
             int sz = p.size();
-            //ResulImp+="\n"+"\tprogram: " + prg + " fitness: " + fit;///
-            //System.out.println("\tprogram: " + prg + " fitness: " + fit);
+            /*ventana.RenovarText("\n"+"\tprogram: " + prg + " fitness: " + fit);///
+            System.out.println("\tprogram: " + prg + " fitness: " + fit);*/
           }
         }
       }
@@ -1132,10 +1021,10 @@ public class SymbolicRegression extends GPProblem {
     // ----------------------------------------------
     // gp.outputSolution(gp.getAllTimeBest());
 
-    //ResulImp+="\n"+"\nAll time best (from generation " + bestGen + ")";///
+    //ventana.RenovarText("\n"+"\nAll time best (from generation " + bestGen + ")");///
     //System.out.println("\nAll time best (from generation " + bestGen + ")");
     myOutputSolution(fittest, numEvolutions);
-    //ResulImp+="\n"+"applicationData: " + fittest.getApplicationData();///
+    //ventana.RenovarText("\n"+"applicationData: " + fittest.getApplicationData());///
     //System.out.println("applicationData: " + fittest.getApplicationData());
     // Create a graphical tree of the best solution's program and write it to
     // a PNG file.
@@ -1144,16 +1033,16 @@ public class SymbolicRegression extends GPProblem {
 
     endTime = System.currentTimeMillis();
     long elapsedTime = endTime - startTime;
-    //ResulImp+="\n"+"\nTotal time " + elapsedTime + "ms";///
-   // System.out.println("\nTotal time " + elapsedTime + "ms");
-   /* if (showSimiliar) {
-      ResulImp+="\n"+"\nAll solutions with the best fitness (" + bestFit +
-                         "):";///
+    ventana.RenovarText("\n"+"\nEl tiempo de ejecucion fue: " + elapsedTime + "ms");///
+    System.out.println("\nTotal time " + elapsedTime + "ms");
+    /*if (showSimiliar) {
+      ventana.RenovarText("\n"+"\nAll solutions with the best fitness (" + bestFit +
+                         "):");///
       System.out.println("\nAll solutions with the best fitness (" + bestFit +
                          "):");
       // TODO: These should be sorted by values.
       for (String p : similiar.keySet()) {
-        ResulImp+="\n"+ p + " (" + similiar.get(p) + ")";///
+        ventana.RenovarText("\n"+ p + " (" + similiar.get(p) + ")");///
         System.out.println(p + " (" + similiar.get(p) + ")");
       }
     }*/
@@ -1194,7 +1083,7 @@ public class SymbolicRegression extends GPProblem {
         }
         try {
           double result = ind.execute_double(0, noargs);
-          // results[j] = result;
+          results[j] = result;
 
           // Sum up the error between actual and expected result to get a defect
           // rate.
@@ -1266,7 +1155,7 @@ public class SymbolicRegression extends GPProblem {
   }
 
   //Resultados del algoritmo
-  public static void myOutputSolution(IGPProgram a_best, int gen) {
+  public static void myOutputSolution(IGPProgram a_best, int gen) throws ScriptException {
     /*String freeMB = SystemKit.niceMemory(SystemKit.getFreeMemoryMB());
     ResulImp+="\n"+"Evolving generation "
                        + (gen)
@@ -1286,21 +1175,50 @@ public class SymbolicRegression extends GPProblem {
                        + freeMB
                        + " MB");*/
     if (a_best == null) {
-      ResulImp+="\n"+"No se encontro una buena solucion tal vez no sea funcion!!";///
+      ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");///
       //System.out.println("No best solution (null)");
       return;
     }
     double bestValue = a_best.getFitnessValue();
     if (Double.isInfinite(bestValue)) {
-      ResulImp+="\n"+"No se encontro una buena solucion tal vez no sea funcion!!";///
+      ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");///
       //System.out.println("No best solution (infinite)");
       return;
     }
-    ResulImp+="\n"+"Mejor fitness encontrado: " +
-                       NumberKit.niceDecimalNumber(bestValue, 2);///
+    ventana.RenovarText("\n"+"Mejor fitness encontrado: " +
+                       NumberKit.niceDecimalNumber(bestValue, 2));///
+    
+    //////
+    ventana.series2 = new  XYSeries("XYGraph");
+    for(int j=0;j<numRows;j++){
+        
+        
+        ScriptEngineManager mgr = new ScriptEngineManager();
+        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+
+
+        String cromo=a_best.toStringNorm(0);
+        String cromocop="";
+
+            for(int i=0;i<cromo.length();i++){
+                if(cromo.charAt(i)!='X') cromocop+=cromo.charAt(i);
+                else cromocop+=ventana.datosx.get(j);
+            }
+
+        double x=ventana.datosx.get(j);
+        double y=(Double)engine.eval(cromocop);
+        ventana.series2.add(x, y);
+        
+        //System.out.println(bestValue+" "+x+" "+y);
+    }
+    ventana.RenovarImagen();
+
+    /////
+
+
     /*System.out.println("Best solution fitness: " +
                        NumberKit.niceDecimalNumber(bestValue, 2));*/
-    ResulImp+="\n"+"Mejor Solucion: " + a_best.toStringNorm(0);///
+    ventana.RenovarText("\n"+"Mejor Solucion: " + a_best.toStringNorm(0));///
     //System.out.println("Best solution: " + a_best.toStringNorm(0));
     String depths = "";
     int size = a_best.size();

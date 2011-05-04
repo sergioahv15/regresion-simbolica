@@ -1,0 +1,333 @@
+[02.05.2011 13:11:40,171] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 13:11:40,176] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 13:11:40,186] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 13:11:40,218] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 13:36:20,349] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 13:36:20,355] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 13:36:20,365] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 13:36:20,438] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 13:36:56,541] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 13:36:56,547] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 13:36:56,558] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 13:36:56,688] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 13:37:40,391] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 13:37:40,396] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 13:37:40,407] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 13:37:40,448] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 13:45:17,609] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 13:45:17,614] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 13:45:17,625] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 13:45:17,666] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 13:55:50,503] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 13:55:50,508] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 13:55:50,518] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 13:55:50,633] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:02:22,167] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:02:22,173] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:02:22,183] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:02:22,327] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:04:42,682] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:04:42,688] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:04:42,698] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:04:42,847] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:05:41,491] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:05:41,497] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:05:41,508] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:05:41,652] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:07:38,684] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:07:38,689] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:07:38,700] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:07:38,844] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:09:38,846] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:09:38,851] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:09:38,861] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:09:39,007] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:12:03,993] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:12:03,998] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:12:04,008] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:12:04,037] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:14:28,725] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:14:28,732] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:14:28,746] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:14:28,913] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:16:58,085] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:16:58,090] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:16:58,101] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:16:58,132] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:19:38,215] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:19:38,221] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:19:38,231] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:19:38,263] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:20:51,162] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:20:51,168] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:20:51,179] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:20:51,186] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,189] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,192] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,195] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,198] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,202] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,207] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,211] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,216] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,223] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,230] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,235] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,240] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,246] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,249] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,256] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,259] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,262] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,264] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,266] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,268] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,269] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,272] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,274] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,276] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,278] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,281] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,283] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,284] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:20:51,299] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:21:29,152] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:21:29,158] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:21:29,170] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:21:29,188] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,192] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,195] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,198] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,203] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,206] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,209] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,212] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,220] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,224] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,226] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,230] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,232] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,237] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,241] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,244] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,247] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,252] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,255] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:21:29,287] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:22:03,410] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:22:03,416] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:22:03,426] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:22:03,442] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,446] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,450] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,453] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,456] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,462] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,465] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,468] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,477] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,480] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,483] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,487] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,491] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,497] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,507] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:03,526] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:22:15,000] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:22:15,005] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:22:15,016] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:22:15,044] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:15,049] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:15,054] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:15,058] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:15,070] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:15,079] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:15,084] [main] WARN  org.jgap.gp.impl.GPPopulation  - Prototype program reused because random program did not satisfy constraints
+[02.05.2011 14:22:15,110] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 14:22:28,758] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 14:22:28,763] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 14:22:28,773] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 14:22:28,825] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:26:17,692] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:26:17,692] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:26:17,708] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:26:17,926] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:27:48,687] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:27:48,687] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:27:48,702] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:27:48,905] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:29:34,486] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:29:34,502] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:29:34,517] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:29:34,549] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:32:43,356] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:32:43,356] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:32:43,371] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:32:43,403] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:34:43,445] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:34:43,445] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:34:43,460] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:34:43,492] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:35:14,333] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:35:14,348] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:35:14,348] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:35:14,395] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:35:40,947] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:35:40,947] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:35:40,962] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:35:40,978] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:42:57,609] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:42:57,609] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:42:57,625] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:42:57,671] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:44:51,286] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:44:51,286] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:44:51,302] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:44:51,442] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 18:47:03,606] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 18:47:03,606] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 18:47:03,621] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 18:47:03,746] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 19:04:29,711] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 19:04:29,716] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 19:04:29,726] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 19:04:29,756] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 19:26:48,048] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 19:26:48,053] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 19:26:48,063] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 19:26:48,093] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 21:17:42,440] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 21:17:42,445] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 21:17:42,460] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 21:17:42,494] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 21:55:41,239] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 21:55:41,244] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 21:55:41,256] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 21:55:41,301] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 22:04:39,603] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 22:04:39,609] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 22:04:39,620] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 22:04:39,650] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 22:05:37,007] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 22:05:37,012] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 22:05:37,023] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 22:05:37,058] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 22:32:11,614] [main] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 22:32:11,622] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 22:32:11,639] [main] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 22:32:11,672] [main] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 22:50:15,501] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 22:50:15,507] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 22:50:15,517] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 22:50:15,576] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 22:53:51,629] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 22:53:51,634] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 22:53:51,645] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 22:53:51,709] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 22:59:03,126] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 22:59:03,131] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 22:59:03,142] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 22:59:03,199] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 23:01:36,754] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:01:36,760] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 23:01:36,770] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:01:36,830] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 23:16:16,028] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:16:16,034] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 23:16:16,044] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:16:16,103] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 23:16:43,862] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:16:43,868] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 23:16:43,877] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:16:43,936] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 23:18:52,261] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:18:52,266] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 23:18:52,278] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:18:52,340] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[02.05.2011 23:23:38,295] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:23:38,301] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[02.05.2011 23:23:38,311] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:23:38,372] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+<<<<<<< .mine
+[03.05.2011 00:14:43,965] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:14:43,971] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[03.05.2011 00:14:43,981] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:14:44,043] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[03.05.2011 00:16:28,124] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:16:28,129] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[03.05.2011 00:16:28,139] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:16:28,201] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[03.05.2011 00:17:27,234] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:17:27,239] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[03.05.2011 00:17:27,249] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:17:27,309] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[03.05.2011 00:32:24,988] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:32:24,994] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[03.05.2011 00:32:25,004] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:32:25,063] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[03.05.2011 00:34:37,041] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:34:37,048] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[03.05.2011 00:34:37,058] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:34:37,124] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+[03.05.2011 00:42:06,830] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:42:06,836] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 73.6 MB
+[03.05.2011 00:42:06,846] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:42:06,916] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 73.6 MB
+[03.05.2011 00:47:50,277] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:47:50,283] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 58.3 MB
+[03.05.2011 00:47:50,294] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:47:50,357] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 58.3 MB
+=======
+[02.05.2011 23:37:37,952] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:37:37,958] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[02.05.2011 23:37:37,973] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:37:38,037] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[02.05.2011 23:48:23,844] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:48:23,851] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[02.05.2011 23:48:23,867] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:48:23,939] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[02.05.2011 23:49:14,239] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:49:14,245] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[02.05.2011 23:49:14,260] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:49:14,331] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[02.05.2011 23:50:00,615] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:50:00,621] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[02.05.2011 23:50:00,635] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:50:00,702] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[02.05.2011 23:53:40,851] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:53:40,857] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[02.05.2011 23:53:40,873] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:53:40,944] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[02.05.2011 23:54:15,281] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:54:15,287] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[02.05.2011 23:54:15,301] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:54:15,370] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[02.05.2011 23:58:16,000] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[02.05.2011 23:58:16,006] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[02.05.2011 23:58:16,021] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[02.05.2011 23:58:16,086] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 00:11:42,252] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:11:42,259] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 00:11:42,274] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:11:42,335] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 00:15:58,344] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:15:58,351] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 00:15:58,366] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:15:58,430] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 00:18:25,978] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:18:25,984] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 00:18:26,000] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:18:26,066] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 00:22:16,273] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:22:16,279] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 00:22:16,293] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:22:16,358] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 00:25:15,717] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:25:15,723] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 00:25:15,738] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:25:15,808] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[03.05.2011 00:39:03,266] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[03.05.2011 00:39:03,272] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[03.05.2011 00:39:03,288] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[03.05.2011 00:39:03,366] [AWT-EventQueue-0] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+>>>>>>> .r10
