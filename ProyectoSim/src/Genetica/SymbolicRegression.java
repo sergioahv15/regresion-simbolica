@@ -7,11 +7,9 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+
+
 import org.jgap.*;
 import org.jgap.gp.*;
 import org.jgap.gp.function.*;
@@ -62,13 +60,13 @@ public class SymbolicRegression extends GPProblem {
    *
    */
 
-  // number of variables to use (output variable is excluded)
 
   public static Principal ventana;
 
   //Cadena para imprimir en la interface
   public static Double[] results;
 
+  // number of variables to use (output variable is excluded)
   public static int numInputVariables;
 
   // the variables to use (of size numInputVariables)
@@ -196,6 +194,7 @@ public class SymbolicRegression extends GPProblem {
     super(a_conf);
   }
 
+
   /**
    * This method is used for setting up the commands and terminals that can be
    * used to solve the problem.
@@ -211,36 +210,11 @@ public class SymbolicRegression extends GPProblem {
     // there is a specification here, otherwise it is empty as in first case.
     // -----------------------------------------------------------------------
     Class[] types;
-    Class[][] argTypes;
-    if (useADF) {
-      if ("boolean".equals(adfType)) {
-        types = new Class[] {CommandGene.DoubleClass, CommandGene.BooleanClass};
-      }
-      else if ("integer".equals(adfType)) {
-        types = new Class[] {CommandGene.DoubleClass, CommandGene.IntegerClass};
-      }
-      else {
-        types = new Class[] {CommandGene.DoubleClass, CommandGene.DoubleClass};
-      }
-      Class[] adfs = new Class[adfArity];
-      for (int i = 0; i < adfArity; i++) {
-        if ("boolean".equals(adfType)) {
-          adfs[i] = CommandGene.BooleanClass;
-        }
-        else if ("integer".equals(adfType)) {
-          adfs[i] = CommandGene.IntegerClass;
-        }
-        else {
-          adfs[i] = CommandGene.DoubleClass;
-        }
-      }
-      argTypes = new Class[][] { {}, adfs};
-    }
-    else {
+    Class[][] argTypes;   
+    
       types = new Class[] {CommandGene.DoubleClass};
-      argTypes = new Class[][] { {}
-      };
-    }
+      argTypes = new Class[][] { {} };
+    
     // Configure desired minimum number of nodes per sub program.
     // Same as with types: First entry here corresponds with first entry in
     // nodeSets.
@@ -250,14 +224,10 @@ public class SymbolicRegression extends GPProblem {
     // This is experimental!
     int[] minDepths;
     int[] maxDepths;
-    if (useADF) {
-      minDepths = new int[] {1, 1};
-      maxDepths = new int[] {9, 9};
-    }
-    else {
-      minDepths = new int[] {1};
-      maxDepths = new int[] {9};
-    }
+    
+    minDepths = new int[] {1};
+    maxDepths = new int[] {9};
+   
     // Next, we define the set of available GP commands and terminals to use.
     // Please see package org.jgap.gp.function and org.jgap.gp.terminal
     // You can easily add commands and terminals of your own.
@@ -319,26 +289,12 @@ public class SymbolicRegression extends GPProblem {
       nodeSets[0][i + numInputVariables] = commands[i];
     }
 
-    // ADF functions in the second array in nodeSets
-    if (useADF) {
-      CommandGene[] adfCommands = makeCommands(conf, adfFunctions, lowerRange,
-          upperRange, "ADF");
-      int adfLength = adfCommands.length;
-      nodeSets[1] = new CommandGene[adfLength];
-      for (int i = 0; i < adfLength; i++) {
-        //ventana.RenovarText("\n"+"function2: " + adfCommands[i]);///
-        //System.out.println("function2: " + adfCommands[i]);
-        nodeSets[1][i] = adfCommands[i];
-      }
-    }
+    
     // this is experimental.
     boolean[] full;
-    if (useADF) {
-      full = new boolean[] {true, true};
-    }
-    else {
-      full = new boolean[] {true};
-    }
+    
+    full = new boolean[] {true};
+    
     boolean[] fullModeAllowed = full;
     // Create genotype with initial population. Here, we use the
     // declarations made above:
@@ -350,211 +306,6 @@ public class SymbolicRegression extends GPProblem {
     //                             minDepths,maxDepths, maxNodes, fullModeAllowed,verboseOutput);
 
   }
-
-  public static void readFile(String file) {
-    try {
-      BufferedReader inr = new BufferedReader(new FileReader(file));
-      String str;
-      int lineCount = 0;
-      boolean gotData = false;
-      ArrayList<Double[]> theData = new ArrayList<Double[]> ();
-      //
-      // read the lines
-      //
-      while ( (str = inr.readLine()) != null) {
-        lineCount++;
-        str = str.trim();
-        // ignore empty lines or comments, i.e. lines starting with either # or %
-        // ----------------------------------------------------------------------
-        if (str.startsWith("#") || str.startsWith("%") || str.length() == 0) {
-          continue;
-        }
-        if ("data".equals(str)) {
-          gotData = true;
-          continue;
-        }
-        if (gotData) {
-          // Read the data rows
-          // ------------------
-          String[] dataRowStr = str.split("[\\s,]+");
-          int len = dataRowStr.length;
-          Double[] dataRow = new Double[len];
-          for (int i = 0; i < len; i++) {
-            dataRow[i] = Double.parseDouble(dataRowStr[i]);
-          }
-          theData.add(dataRow);
-        }
-        else {
-          // Check for parameters on the form
-          //    parameter: value(s)
-          // --------------------------------
-          if (str.contains(":")) {
-            String row[] = str.split(":\\s*");
-            // Now check each parameter
-            if ("return_type".equals(row[0])) {
-              returnType = row[1];
-            }
-            else if ("presentation".equals(row[0])) {
-              presentation = row[1];
-            }
-            else if ("num_input_variables".equals(row[0])) {
-              numInputVariables = Integer.parseInt(row[1]);
-            }
-            else if ("num_rows".equals(row[0])) {
-              numRows = Integer.parseInt(row[1]);
-            }
-            else if ("terminal_range".equals(row[0])) {
-              String[] ranges = row[1].split("\\s+");
-              lowerRange = Double.parseDouble(ranges[0]);
-              upperRange = Double.parseDouble(ranges[1]);
-            }
-            else if ("terminal_wholenumbers".equals(row[0])) {
-              terminalWholeNumbers = Boolean.parseBoolean(row[1]);
-            }
-            else if ("max_init_depth".equals(row[0])) {
-              maxInitDepth = Integer.parseInt(row[1]);
-            }
-            else if ("min_init_depth".equals(row[0])) {
-              minInitDepth = Integer.parseInt(row[1]);
-            }
-            else if ("program_creation_max_tries".equals(row[0])) {
-              programCreationMaxTries = Integer.parseInt(row[1]);
-            }
-            else if ("population_size".equals(row[0])) {
-              populationSize = Integer.parseInt(row[1]);
-            }
-            else if ("max_crossover_depth".equals(row[0])) {
-              maxCrossoverDepth = Integer.parseInt(row[1]);
-            }
-            else if ("function_prob".equals(row[0])) {
-              functionProb = Double.parseDouble(row[1]);
-            }
-            else if ("reproduction_prob".equals(row[0])) {
-              reproductionProb = Float.parseFloat(row[1]);
-            }
-            else if ("mutation_prob".equals(row[0])) {
-              mutationProb = Float.parseFloat(row[1]);
-            }
-            else if ("crossover_prob".equals(row[0])) {
-              crossoverProb = Double.parseDouble(row[1]);
-            }
-            else if ("dynamize_arity_prob".equals(row[0])) {
-              dynamizeArityProb = Float.parseFloat(row[1]);
-            }
-            else if ("new_chroms_percent".equals(row[0])) {
-              newChromsPercent = Double.parseDouble(row[1]);
-            }
-            else if ("num_evolutions".equals(row[0])) {
-              numEvolutions = Integer.parseInt(row[1]);
-            }
-            else if ("max_nodes".equals(row[0])) {
-              maxNodes = Integer.parseInt(row[1]);
-            }
-            else if ("bump".equals(row[0])) {
-              bumpPerfect = Boolean.parseBoolean(row[1]);
-            }
-            else if ("bump_value".equals(row[0])) {
-              bumpValue = Double.parseDouble(row[1]);
-            }
-            else if ("functions".equals(row[0])) {
-              functions = row[1].split("[\\s,]+");
-            }
-            else if ("adf_functions".equals(row[0])) {
-              adfFunctions = row[1].split("[\\s,]+");
-            }
-            else if ("variable_names".equals(row[0])) {
-              variableNames = row[1].split("[\\s,]+");
-            }
-            else if ("output_variable".equals(row[0])) {
-              outputVariable = Integer.parseInt(row[1]);
-            }
-            else if ("ignore_variables".equals(row[0])) {
-              String[] ignoreVariablesS = row[1].split("[\\s,]+");
-              ignoreVariables = new int[ignoreVariablesS.length];
-              // TODO: make it a HashMap instead!
-              for (int i = 0; i < ignoreVariablesS.length; i++) {
-                ignoreVariables[i] = Integer.parseInt(ignoreVariablesS[i]);
-              }
-            }
-            else if ("constant".equals(row[0])) {
-              Double constant = Double.parseDouble(row[1]);
-              constants.add(constant);
-            }
-            else if ("adf_arity".equals(row[0])) {
-              adfArity = Integer.parseInt(row[1]);
-              //ventana.RenovarText("\n"+"ADF arity " + adfArity);///
-              //System.out.println("ADF arity " + adfArity);
-              if (adfArity > 0) {
-                useADF = true;
-              }
-            }
-            else if ("adf_type".equals(row[0])) {
-              adfType = row[1];
-              // } else if ("punish_length".equals(row[0])) {
-              //    punishLength = Boolean.parseBoolean(row[1]);
-
-            }
-            else if ("tournament_selector_size".equals(row[0])) {
-              tournamentSelectorSize = Integer.parseInt(row[1]);
-            }
-            else if ("scale_error".equals(row[0])) {
-              scaleError = Double.parseDouble(row[1]);
-            }
-            else if ("stop_criteria".equals(row[0])) {
-              stopCriteria = Double.parseDouble(row[1]);
-            }
-            else if ("show_population".equals(row[0])) {
-              showPopulation = Boolean.parseBoolean(row[1]);
-            }
-            else if ("show_similiar".equals(row[0])) {
-              showSimiliar = Boolean.parseBoolean(row[1]);
-            }
-            else {
-              System.out.println("Unknown keyword: " + row[0] + " on line " +
-                                 lineCount);
-              System.exit(1);
-            }
-          }
-        } // end if(gotData)
-      } // end while
-      inr.close();
-      //
-      // Now we know everything to be known.
-      // Construct the matrix from the file.
-      // -----------------------------------
-      int r = theData.size();
-      int c = theData.get(0).length;
-      int numIgnore = 0;
-      if (ignoreVariables != null) {
-        // TODO: ignoreVariables should be a HashMap
-        numIgnore = ignoreVariables.length;
-        // c = c - numIgnore;
-      }
-      Double[][] dataTmp = new Double[r][c];
-      // TODO: ignore the variables in ignoreVariables
-      for (int i = 0; i < r; i++) {
-        Double[] this_row = theData.get(i);
-        for (int j = 0; j < c; j++) {
-          dataTmp[i][j] = this_row[j];
-        }
-      }
-
-      /*for(int i=0;i<r;i++){
-            System.out.println("----------");
-            for(int j=0;j<c;j++){
-                System.out.println(theData.get(i)[j]);
-            }
-      }*/
-
-      // Since we calculate the error on the variable we
-      // must transpose the data matrix
-      // -----------------------------------------------
-      data = transposeMatrix(dataTmp);
-    } catch (IOException e) {
-      System.out.println(e);
-      System.exit(1);
-    }
-  } // end readFile
 
   //
   // Transpose matrix
@@ -887,14 +638,8 @@ public class SymbolicRegression extends GPProblem {
         }
       }
       commandsList.add(new Terminal(conf, CommandGene.DoubleClass, lowerRange,
-                                    upperRange, terminalWholeNumbers));
-      // commandsList.add(new Terminal(conf, CommandGene.BooleanClass, lowerRange, upperRange, terminalWholeNumbers));
-
-      // ADF
-      // Just add the ADF to the "normal" command list (i.e. not to the ADF list)
-      if (useADF && !"ADF".equals(type)) {
-        commandsList.add(new ADF(conf, 1, adfArity));
-      }
+                                    upperRange, terminalWholeNumbers));      
+     
       if (constants != null) {
         for (int i = 0; i < constants.size(); i++) {
           Double constant = constants.get(i);
@@ -1135,15 +880,6 @@ public class SymbolicRegression extends GPProblem {
         }
         error = 0.1d;
       }
-      // a simplistc version of length punishing
-      /*
-        // too experimental
-        if (punishLength) {
-          return error + length;
-        } else {
-          return error;
-        }
-       */
 
       if (scaleError > 0.0d) {
         return error * scaleError;
@@ -1156,14 +892,7 @@ public class SymbolicRegression extends GPProblem {
 
   //Resultados del algoritmo
   public static void myOutputSolution(IGPProgram a_best, int gen) throws ScriptException {
-    /*String freeMB = SystemKit.niceMemory(SystemKit.getFreeMemoryMB());
-    ResulImp+="\n"+"Evolving generation "
-                       + (gen)
-                       + "/" + numEvolutions
-                       + ", memory free: "
-                       + freeMB
-                       + " MB";///*/
-
+    
       /*ResulImp+="Generacion "
                        + (gen)
                        + "/" + numEvolutions;
@@ -1227,14 +956,6 @@ public class SymbolicRegression extends GPProblem {
         depths += " / ";
       }
       depths += a_best.getChromosome(i).getDepth(0);
-    }
-    /*if (size == 1) {
-      ResulImp+="\n"+"Depth of chrom: " + depths;///
-      System.out.println("Depth of chrom: " + depths);
-    }
-    else {
-      ResulImp+="\n"+"Depths of chroms: " + depths;///
-      System.out.println("Depths of chroms: " + depths);
-    }*/
+    }    
   }
 }
