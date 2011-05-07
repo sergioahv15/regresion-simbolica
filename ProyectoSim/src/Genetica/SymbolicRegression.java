@@ -53,19 +53,11 @@ import org.jgap.util.*;
  * @since 3.5
  */
 public class SymbolicRegression extends GPProblem {
-//  private transient static Logger LOGGER = Logger.getLogger(SymbolicRegression.class);
-
-  /*
-   * public variables which may be changed by configuration file
-   *
-   */
-
 
   public static Principal ventana;
-
-  //Cadena para imprimir en la interface
+  
   public static Double[] results;
-
+  private EvaluarFit es = new EvaluarFit();
   // number of variables to use (output variable is excluded)
   public static int numInputVariables;
 
@@ -242,6 +234,7 @@ public class SymbolicRegression extends GPProblem {
     //  1) in the nodeSets matrix
     //  2) as variables (to be used for fitness checking)
     // --------------------------------------------------
+    es.variables = new Variable[numInputVariables];
     variables = new Variable[numInputVariables];
     int variableIndex = 0;
     for (int i = 0; i < numInputVariables + 1; i++) {
@@ -250,6 +243,8 @@ public class SymbolicRegression extends GPProblem {
         if (variableNames != null && variableNames.length > 0) {
           variableName = variableNames[i];
         }
+        es.variables[variableIndex] = Variable.create(conf, variableName,
+            CommandGene.DoubleClass);
         variables[variableIndex] = Variable.create(conf, variableName,
             CommandGene.DoubleClass);
         nodeSets[0][variableIndex] = variables[variableIndex];
@@ -793,103 +788,7 @@ public class SymbolicRegression extends GPProblem {
     }*/
     //System.exit(0);
   }
-
-  /**
-   * Fitness function for evaluating the produced fomulas, represented as GP
-   * programs. The fitness is computed by calculating the result (Y) of the
-   * function/formula for integer inputs 0 to 20 (X). The sum of the differences
-   * between expected Y and actual Y is the fitness, the lower the better (as
-   * it is a defect rate here).
-   */
-  public static class FormulaFitnessFunction extends GPFitnessFunction {
-    protected double evaluate(final IGPProgram a_subject) {
-      return computeRawFitness(a_subject);
-    }
-
-    public double computeRawFitness(final IGPProgram ind) {
-      double error = 0.0f;
-      Object[] noargs = new Object[0];
-      // Evaluate function for the input numbers
-      // --------------------------------------------
-      // double[] results  =  new double[numRows];
-      for (int j = 0; j < numRows; j++) {
-        // Provide the variable X with the input number.
-        // See method create(), declaration of "nodeSets" for where X is
-        // defined.
-        // -------------------------------------------------------------
-
-        // set all the input variables
-        int variableIndex = 0;
-        for (int i = 0; i < numInputVariables + 1; i++) {
-          if (i != outputVariable) {
-            variables[variableIndex].set(data[i][j]);
-            variableIndex++;
-          }
-        }
-        try {
-          double result = ind.execute_double(0, noargs);
-          results[j] = result;
-
-          // Sum up the error between actual and expected result to get a defect
-          // rate.
-          // -------------------------------------------------------------------
-
-          // hakank: TODO: test with different metrics...
-          error += Math.abs(result - data[outputVariable][j]); // original
-          // error += Math.pow(Math.abs(result - data[outputVariable][j]),2);
-
-          // If the error is too high, stop evaluation and return worst error
-          // possible.
-          // ----------------------------------------------------------------
-          if (Double.isInfinite(error)) {
-            return Double.MAX_VALUE;
-          }
-        } catch (ArithmeticException ex) {
-          // This should not happen, some illegal operation was executed.
-          // ------------------------------------------------------------
-          System.out.println(ind);
-          throw ex;
-        }
-      }
-      /*
-        // experimental
-        ProgramChromosome chrom = ind.getChromosome(0);
-        String program = chrom.toStringNorm(0);
-        double length = program.length();
-       */
-
-      // If the fitness is very close to 0.0 then we maybe bump it
-      // up to see alternative solutions.
-      // -------------------------------------------------------
-      if (error <= bumpValue && bumpPerfect) {
-        if (!foundPerfect) {
-          //System.out.println("Found a perfect solution with err " + error +
-            //                 "!. Bump up the values!");
-          foundPerfect = true;
-        }
-        ProgramChromosome chrom = ind.getChromosome(0);
-        String program = chrom.toStringNorm(0);
-        if (!foundSolutions.containsKey(program)) {
-          System.out.println("PROGRAM:" + program + " error: " + error);
-          foundSolutions.put(program, 1);
-        }
-        else {
-          // TODO: We may want to show the number of hits
-          // after the run...
-          foundSolutions.put(program, foundSolutions.get(program) + 1);
-        }
-        error = 0.1d;
-      }
-
-      if (scaleError > 0.0d) {
-        return error * scaleError;
-      }
-      else {
-        return error;
-      }
-    }
-  }
-
+ 
   //Resultados del algoritmo
   public static void myOutputSolution(IGPProgram a_best, int gen) throws ScriptException {
     
