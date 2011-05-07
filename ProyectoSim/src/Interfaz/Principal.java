@@ -49,6 +49,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setText("");
         dataset = new XYSeriesCollection();
         datos=new Double[10][100];
+        System.out.println("ojo");
     }
 
     public void LimpiarDatos(){
