@@ -23,6 +23,8 @@ public class Sqrt extends MathCommand implements ICloneable {
     return "Sqrt";
   }
 
+  //Se genera polimorfismo y se usa la funcion primitiva de java para 
+  //Obtener la raiz cuadrada
   public float execute_float(ProgramChromosome c, int n, Object[] args) {
     float f = c.execute_float(n, 0, args);
     return (float) Math.sqrt(Math.abs(f));

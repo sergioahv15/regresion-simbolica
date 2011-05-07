@@ -19,131 +19,79 @@ import org.jgap.gp.impl.*;
 import org.jgap.gp.terminal.*;
 import org.jgap.util.*;
 
-public class SymbolicRegression extends GPProblem {
+public class ProgramacionGenetica extends GPProblem {
 
-  public static int cols;
-  public static Principal ventana;
-  private EvaluarFit es = new EvaluarFit();
+  public static int cols;// numero de datos
+  public static Principal ventana; //objeto que ayuda a mostrar datos en interfaz
+  private EvaluarFit es = new EvaluarFit(); //Objeto que ayuda a evaluar las soluciones
 
   // variable name
-  public static String[] variableNames;
+  public static String[] nomVars;
  
   // constants
-  public static ArrayList<Double> constants = new ArrayList<Double> ();
+  public static ArrayList<Double> constantes = new ArrayList<Double> (); 
 
-  // If we have found a perfect solution.
-  public static boolean foundPerfect = false;
+  //Variables para configurar el algoritmo genetico
+  public static int minProf = 2;  //Minima profundidad del arbol
+  public static int maxProf = 4;  //Maxima profundidad del arbol
+  public static int poblacion = 100; //Numero de individuos
+  public static int profCruce = 8; //profundidad maxima para encontrar individuos para el cruce
+  public static int masInten = 5;
+  public static int generaciones = 1800; //numero generaciones
+  public static boolean salida = true;  //mostrar datos
+  public static int maxNodos = 21;     //numero maximo de nodos en el arbol
+  public static double probFunc = 0.9; //Probabilidad de ser una funcion
+  public static float probRepro = (float)0.1;
+  public static float probMuta = (float)0.1;
+  public static double probCruce = 0.9; 
+  public static double nCromo = 0.3;
+  public static int tamTorneo = 0;
 
-  // standard GP parameters
-  public static int minInitDepth = 2;
+  // intervalo de busqueda
+  public static double comIntervalo = -10.0;
+  public static double finIntervalo = 10.0;
 
-  public static int maxInitDepth = 4;
+  // finalizar el algoritmo con un numero de iteraciones
+  public static boolean finalizarIte = true;
 
-  public static int populationSize = 100;
-
-  public static int maxCrossoverDepth = 8;
-
-  public static int programCreationMaxTries = 5;
-
-  public static int numEvolutions = 1800;
-
-  public static boolean verboseOutput = true;
-
-  public static int maxNodes = 21;
-
-  public static double functionProb = 0.9d;
-
-  public static float reproductionProb = 0.1f; // float
-
-  public static float mutationProb = 0.1f; // float
-
-  public static double crossoverProb = 0.9d;
-
-  public static float dynamizeArityProb = 0.08f; // float
-
-  public static double newChromsPercent = 0.3d;
-
-  public static int tournamentSelectorSize = 0;
-
-  // lower/upper ranges for the Terminal
-  public static double lowerRange = -10.0d;
-
-  public static double upperRange = 10.0d;
-
-  // Should the terminal be a wholenumber or not?
-  public static boolean terminalWholeNumbers = true;
-
-  public static String returnType = "DoubleClass"; // not used yet
-
-  public static String presentation = "";
-
-  public static String adfType = "double";
-
-  public static boolean useADF = false;
-
-  // list of functions (as strings)
+  // Funciones basicas
   public static String[] functions = {"Multiply", "Divide", "Add", "Subtract"};  
   
-  public static long startTime;
+  //Variables para medir el tiempo que se demora el algoritmo
+  public static long tInicio;
+  public static long tFin;
 
-  public static long endTime;
+  //Si hemos encontrado una solucion con un error menor o igual al definido
+  //o si el numero de iteraciones es igual al maximo establecido para
+  public static double cParada = -1.0;
 
-  // if > 0.0d -> stop if the fitness is below or equal
-  // this value. TODO!
-  public static double stopCriteria = -1.0d;
+  //Si existen varias soluciones mostrar todas
+  public static boolean verSim = false;
 
-  public static boolean showPopulation = false;
-
-  public static boolean showSimiliar = false;
-
-  public SymbolicRegression(){
+  public ProgramacionGenetica(){
   }
 
-  public SymbolicRegression(GPConfiguration a_conf)
+  public ProgramacionGenetica(GPConfiguration a_conf)
       throws InvalidConfigurationException {
     super(a_conf);
   }
 
-
-  /**
-   * This method is used for setting up the commands and terminals that can be
-   * used to solve the problem.
-   *
-   * @return GPGenotype
-   * @throws InvalidConfigurationException
-   */
-  public GPGenotype create() throws InvalidConfigurationException {
-    GPConfiguration conf = getGPConfiguration();
-    // At first, we define the return type of the GP program.
-    // ------------------------------------------------------
-    // Then, we define the arguments of the GP parts. Normally, only for ADF's
-    // there is a specification here, otherwise it is empty as in first case.
-    // -----------------------------------------------------------------------
+ //metodo heredado de la GPProblem se utiliza para configurar los parametros
+ //del genetico
+ public GPGenotype create() throws InvalidConfigurationException {
+    GPConfiguration conf = getGPConfiguration();   
     Class[] types;
     Class[][] argTypes;   
     
-      types = new Class[] {CommandGene.DoubleClass};
-      argTypes = new Class[][] { {} };
-    
-    // Configure desired minimum number of nodes per sub program.
-    // Same as with types: First entry here corresponds with first entry in
-    // nodeSets.
-    // Configure desired maximum number of nodes per sub program.
-    // First entry here corresponds with first entry in nodeSets.
-    //
-    // This is experimental!
-    int[] minDepths;
-    int[] maxDepths;
-    
-    minDepths = new int[] {1};
-    maxDepths = new int[] {9};
+    types = new Class[] {CommandGene.DoubleClass};
+    argTypes = new Class[][] { {} };
    
     // Next, we define the set of available GP commands and terminals to use.
     // Please see package org.jgap.gp.function and org.jgap.gp.terminal
     // You can easily add commands and terminals of your own.
     // ----------------------------------------------------------------------
-    CommandGene[] commands = makeCommands(conf, functions, lowerRange,
-        upperRange, "plain");
+    CommandGene[] commands = makeCommands(conf, functions, comIntervalo,
+        finIntervalo, "plain");
     // Create the node sets
     int command_len = commands.length;
     CommandGene[][] nodeSets = new CommandGene[2][es.varEntrada +
@@ -156,10 +104,10 @@ public class SymbolicRegression extends GPProblem {
     es.variables = new Variable[es.varEntrada];
     int variableIndex = 0;
     for (int i = 0; i < es.varEntrada + 1; i++) {
-      String variableName = variableNames[i];
+      String variableName = nomVars[i];
       if (i != es.variableSal) {
-        if (variableNames != null && variableNames.length > 0) {
-          variableName = variableNames[i];
+        if (nomVars != null && nomVars.length > 0) {
+          variableName = nomVars[i];
         }
         es.variables[variableIndex] = Variable.create(conf, variableName,
             CommandGene.DoubleClass);
@@ -171,52 +119,42 @@ public class SymbolicRegression extends GPProblem {
         variableIndex++;
       }
     }
-    // assign the functions/terminals
-    // ------------------------------
+    
 
-      ventana.RenovarText("\n"+"Operaciones definidas: ");///
+     //Este ciclo permite mostrar al usuario que funciones se estan usando
+     //Para encontrar la solucion.
+     ventana.RenovarText("\n"+"Operaciones definidas: ");
       for (int i = 0; i < command_len; i++) {
-      //ResulImp+="" + commands[i];///
-      //System.out.println("function1: " + commands[i]);
-        System.out.println("comandos "+commands[i]);
-      if(commands[i].toString().contains("+"))
-          ventana.RenovarText("+, ");
-      if(commands[i].toString().contains("-")  && !commands[i].toString().contains("&"))
-          ventana.RenovarText("C, ");
-      if(commands[i].toString().contains("-")  && commands[i].toString().contains("&"))
-          ventana.RenovarText("-, ");
-      if(commands[i].toString().contains("*"))
-          ventana.RenovarText("*, ");
-      if(commands[i].toString().contains("/"))
-          ventana.RenovarText("/, ");
-      if(commands[i].toString().contains("sqrt"))
-          ventana.RenovarText("Raiz2, ");
-      if(commands[i].toString().contains("^"))
-          ventana.RenovarText("^, ");
-      if(commands[i].toString().contains("log"))
-          ventana.RenovarText("Ln, ");
-      if(commands[i].toString().contains("sine"))
-          ventana.RenovarText("Sin, ");
-      if(commands[i].toString().contains("cosine"))
-          ventana.RenovarText("Cos, ");
-      if(commands[i].toString().contains("Exp"))
-          ventana.RenovarText("Exp, ");
+          if(commands[i].toString().contains("+"))
+              ventana.RenovarText("+, ");
+          if(commands[i].toString().contains("-")  && !commands[i].toString().contains("&"))
+              ventana.RenovarText("C, ");
+          if(commands[i].toString().contains("-")  && commands[i].toString().contains("&"))
+              ventana.RenovarText("-, ");
+          if(commands[i].toString().contains("*"))
+              ventana.RenovarText("*, ");
+          if(commands[i].toString().contains("/"))
+              ventana.RenovarText("/, ");
+          if(commands[i].toString().contains("sqrt"))
+              ventana.RenovarText("Raiz2, ");
+          if(commands[i].toString().contains("^"))
+              ventana.RenovarText("^, ");
+          if(commands[i].toString().contains("log"))
+              ventana.RenovarText("Ln, ");
+          if(commands[i].toString().contains("sine"))
+              ventana.RenovarText("Sin, ");
+          if(commands[i].toString().contains("cosine"))
+              ventana.RenovarText("Cos, ");
+          if(commands[i].toString().contains("Exp"))
+              ventana.RenovarText("Exp, ");
 
-      nodeSets[0][i + es.varEntrada] = commands[i];
+          //Colocar una operacion en el nodo actual del arbol
+          nodeSets[0][i + es.varEntrada] = commands[i];
     }
-
-    
-    // this is experimental.
-    boolean[] full;
-    
-    full = new boolean[] {true};
-    
-    boolean[] fullModeAllowed = full;
-    // Create genotype with initial population. Here, we use the
-    // declarations made above:
-    // ----------------------------------------------------------
-    return GPGenotype.randomInitialGenotype(conf, types, argTypes, nodeSets,
-        maxNodes, verboseOutput);    
+   
+    //Comenzando se genera una configuracion al azar para mejorar desde esta
+     return GPGenotype.randomInitialGenotype(conf, types, argTypes, nodeSets,
+        maxNodos, salida);
   }
   
   public static Double[][] transposeMatrix(Double[][] m) {
@@ -279,11 +217,11 @@ public class SymbolicRegression extends GPProblem {
       }
 
       commandsList.add(new Terminal(conf, CommandGene.DoubleClass, lowerRange,
-                                    upperRange, terminalWholeNumbers));      
+                                    upperRange, finalizarIte));
      
-      if (constants != null) {
-        for (int i = 0; i < constants.size(); i++) {
-          Double constant = constants.get(i);
+      if (constantes != null) {
+        for (int i = 0; i < constantes.size(); i++) {
+          Double constant = constantes.get(i);
           commandsList.add(new Constant(conf, CommandGene.DoubleClass, constant));
         }
       }
@@ -304,7 +242,7 @@ public class SymbolicRegression extends GPProblem {
     GPGenotype gp = problem.create();
     // gp.setVerboseOutput(true);
     gp.setVerboseOutput(false);
-    startTime = System.currentTimeMillis();
+    tInicio = System.currentTimeMillis();
     // Start the computation with maximum 800 evolutions.
     // if a satisfying result is found (fitness value almost 0), JGAP stops
     // earlier automatically.
@@ -327,10 +265,10 @@ public class SymbolicRegression extends GPProblem {
     String bestProgram = "";
     int bestGen = 0;
     HashMap<String, Integer> similiar = null;
-    if (showSimiliar) {
+    if (verSim) {
       similiar = new HashMap<String, Integer> ();
     }
-    for (int gen = 1; gen <= numEvolutions; gen++) {
+    for (int gen = 1; gen <= generaciones; gen++) {
       gp.evolve(); // evolve one generation
       gp.calcFitness();
       GPPopulation pop = gp.getGPPopulation();
@@ -340,17 +278,11 @@ public class SymbolicRegression extends GPProblem {
       ProgramChromosome chrom = thisFittest.getChromosome(0);
       String program = chrom.toStringNorm(0);
       double fitness = thisFittest.getFitnessValue();
-      if (showSimiliar || showPopulation) {
-        if (showPopulation) {
-          /*ventana.RenovarText("\n"+"Generation " + gen +
-                             " (show whole population, sorted)");//
-          System.out.println("Generation " + gen +
-                             " (show whole population, sorted)");*/
-        }
+      if (verSim) {
         pop.sortByFitness();
         for (IGPProgram p : pop.getGPPrograms()) {
           double fit = p.getFitnessValue();
-          if (showSimiliar && fit <= bestFit) {
+          if (verSim && fit <= bestFit) {
             String prog = p.toStringNorm(0);
             if (!similiar.containsKey(prog)) {
               similiar.put(prog, 1);
@@ -359,12 +291,7 @@ public class SymbolicRegression extends GPProblem {
               similiar.put(prog, similiar.get(prog) + 1);
             }
           }
-          if (showPopulation) {
-            String prg = p.toStringNorm(0);
-            int sz = p.size();
-            /*ventana.RenovarText("\n"+"\tprogram: " + prg + " fitness: " + fit);///
-            System.out.println("\tprogram: " + prg + " fitness: " + fit);*/
-          }
+
         }
       }
       //
@@ -377,13 +304,12 @@ public class SymbolicRegression extends GPProblem {
       // }
       if (bestFit < 0.0d || fitness < bestFit) {
         bestGen = gen;
-        myOutputSolution(thisFittest, gen);
+        mostrarDatos(thisFittest, gen);
         bestFit = fitness;
         bestProgram = program;
         fittest = thisFittest;
-        if (showSimiliar) {
-          // reset the hash
-          similiar.clear(); // = new HashMap<String,Integer>();
+        if (verSim) {
+          similiar.clear();
         }
         // Ensure that the best solution is in the population.
         // gp.addFittestProgram(thisFittest);
@@ -404,7 +330,7 @@ public class SymbolicRegression extends GPProblem {
 
     //ventana.RenovarText("\n"+"\nAll time best (from generation " + bestGen + ")");///
     //System.out.println("\nAll time best (from generation " + bestGen + ")");
-    myOutputSolution(fittest, numEvolutions);
+    mostrarDatos(fittest, generaciones);
     //ventana.RenovarText("\n"+"applicationData: " + fittest.getApplicationData());///
     //System.out.println("applicationData: " + fittest.getApplicationData());
     // Create a graphical tree of the best solution's program and write it to
@@ -412,52 +338,26 @@ public class SymbolicRegression extends GPProblem {
     // ----------------------------------------------------------------------
     // problem.showTree(gp.getAllTimeBest(), "mathproblem_best.png");
 
-    endTime = System.currentTimeMillis();
-    long elapsedTime = endTime - startTime;
-    ventana.RenovarText("\n"+"\nEl tiempo de ejecucion fue: " + elapsedTime + "ms");///
-    System.out.println("\nTotal time " + elapsedTime + "ms");
-    /*if (showSimiliar) {
-      ventana.RenovarText("\n"+"\nAll solutions with the best fitness (" + bestFit +
-                         "):");///
-      System.out.println("\nAll solutions with the best fitness (" + bestFit +
-                         "):");
-      // TODO: These should be sorted by values.
-      for (String p : similiar.keySet()) {
-        ventana.RenovarText("\n"+ p + " (" + similiar.get(p) + ")");///
-        System.out.println(p + " (" + similiar.get(p) + ")");
-      }
-    }*/
-    //System.exit(0);
-  }
- 
-  //Resultados del algoritmo
-  public static void myOutputSolution(IGPProgram a_best, int gen) throws ScriptException {
+    tFin = System.currentTimeMillis();    
+    ventana.RenovarText("\n"+"\nEl tiempo de ejecucion fue: " + (tFin - tInicio) + "ms");
     
-      /*ResulImp+="Generacion "
-                       + (gen)
-                       + "/" + numEvolutions;
+  }
 
-    /*System.out.println("Evolving generation "
-                       + (gen)
-                       + "/" + numEvolutions
-                       + ", memory free: "
-                       + freeMB
-                       + " MB");*/
+  //Resultados del algoritmo
+  public static void mostrarDatos(IGPProgram a_best, int gen) throws ScriptException {
+     
     if (a_best == null) {
-      ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");///
-      //System.out.println("No best solution (null)");
+      ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");      
       return;
     }
     double bestValue = a_best.getFitnessValue();
     if (Double.isInfinite(bestValue)) {
-      ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");///
-      //System.out.println("No best solution (infinite)");
+      ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");   
       return;
     }
     ventana.RenovarText("\n"+"Mejor fitness encontrado: " +
-                       NumberKit.niceDecimalNumber(bestValue, 2));///
-
-    //////
+                       NumberKit.niceDecimalNumber(bestValue, 2));
+   
     ventana.series2 = new  XYSeries("XYGraph");
 
     for(int j=0;j<cols;j++){
@@ -469,30 +369,16 @@ public class SymbolicRegression extends GPProblem {
         while(new Transformar().verificar(cromocop)){
             cromocop=new Transformar().devolver(cromocop, ventana, j);
         }
-        double x=ventana.datos[0][j];
-        System.out.println(cromo);
-        System.out.println(cromocop);
-        double y=(Double)engine.eval(cromocop);
+        double x = ventana.datos[0][j];
+        double y = (Double)engine.eval(cromocop);
         ventana.series2.add(x, y);
     }
-    ventana.RenovarImagen();
-    /////
-
-
-    /*System.out.println("Best solution fitness: " +
-                       NumberKit.niceDecimalNumber(bestValue, 2));*/
-    ventana.RenovarText("\n"+"Mejor Solucion: " + a_best.toStringNorm(0));///
-    //System.out.println("Best solution: " + a_best.toStringNorm(0));
-    String depths = "";
-    int size = a_best.size();
-    for (int i = 0; i < size; i++) {
-      if (i > 0) {
-        depths += " / ";
-      }
-      depths += a_best.getChromosome(i).getDepth(0);
-    }    
+    ventana.RenovarImagen();    
+    ventana.RenovarText("\n"+"Mejor Solucion: " + a_best.toStringNorm(0));    
+    
   }
 
+  //Setters y getters
   public void setCols(int cols) {
         this.cols = cols;
     }

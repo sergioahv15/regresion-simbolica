@@ -2,7 +2,7 @@
 package Interfaz;
 
 import Genetica.EvaluarFit;
-import Genetica.SymbolicRegression;
+import Genetica.ProgramacionGenetica;
 import org.jgap.gp.GPProblem;
 import org.jgap.gp.impl.DeltaGPFitnessEvaluator;
 import org.jgap.gp.impl.GPConfiguration;
@@ -14,13 +14,13 @@ import org.jgap.gp.impl.TournamentSelector;
  */
 public class Hilo extends Thread{
 
-    public SymbolicRegression sr;
+    public ProgramacionGenetica sr;
     public String[] s;
     public int x;
     public Principal f;
     private EvaluarFit es = new EvaluarFit();
 
-    public Hilo(SymbolicRegression SR, String[] args, Principal frame, int i){
+    public Hilo(ProgramacionGenetica SR, String[] args, Principal frame, int i){
         sr=SR;
         s=args;
         x=i;
@@ -38,10 +38,10 @@ public class Hilo extends Thread{
             if (es.variableSal == null)
               es.variableSal = es.varEntrada;
            
-            if (sr.variableNames == null) {
-              sr.variableNames = new String[es.varEntrada + 1];
+            if (sr.nomVars == null) {
+              sr.nomVars = new String[es.varEntrada + 1];
               for (int i = 0; i < es.varEntrada + 1; i++) {
-                sr.variableNames[i] = "V" + i;
+                sr.nomVars[i] = "V" + i;
               }
             }
 
@@ -52,16 +52,16 @@ public class Hilo extends Thread{
             // a point score!
             // ----------------------------------------------------------------------
             configuracion.setGPFitnessEvaluator(new DeltaGPFitnessEvaluator());
-            configuracion.setMaxInitDepth(sr.maxInitDepth);
-            configuracion.setPopulationSize(sr.populationSize);
+            configuracion.setMaxInitDepth(sr.maxProf);
+            configuracion.setPopulationSize(sr.poblacion);
             // Default selectionMethod is is TournamentSelector(3)
-            if (sr.tournamentSelectorSize > 0) {
-              configuracion.setSelectionMethod(new TournamentSelector(sr.tournamentSelectorSize));
+            if (sr.tamTorneo > 0) {
+              configuracion.setSelectionMethod(new TournamentSelector(sr.tamTorneo));
             }
             /**
              * The maximum depth of an individual resulting from crossover.
              */
-            configuracion.setMaxCrossoverDepth(sr.maxCrossoverDepth);
+            configuracion.setMaxCrossoverDepth(sr.profCruce);
             configuracion.setFitnessFunction(new EvaluarFit.EvaluarFitness());
             /**
              * @param a_strict true: throw an error during evolution in case a situation
@@ -77,37 +77,33 @@ public class Hilo extends Thread{
              * In crossover: If random number (0..1) < this value, then choose a function
              * otherwise a terminal.
              */
-            configuracion.setFunctionProb(sr.functionProb);
+            configuracion.setFunctionProb(sr.probFunc);
             /**
              * The probability that a reproduction operation is chosen during evolution.
              * Must be between 0.0d and 1.0d. crossoverProb + reproductionProb must equal
              * 1.0d.
              */
-            configuracion.setReproductionProb(sr.reproductionProb);
+            configuracion.setReproductionProb(sr.probRepro);
             /**
              * The probability that a node is mutated during growing a program.
              */
-            configuracion.setMutationProb(sr.mutationProb);
-            /**
-             * The probability that the arity of a node is changed during growing a
-             * program.
-             */
-            configuracion.setDynamizeArityProb(sr.dynamizeArityProb);
+            configuracion.setMutationProb(sr.probMuta);
+                  
             /**
              * Percentage of the population that will be filled with new individuals
              * during evolution. Must be between 0.0d and 1.0d.
              */
-            configuracion.setNewChromsPercent(sr.newChromsPercent);
+            configuracion.setNewChromsPercent(sr.nCromo);
             /**
              * The minimum depth of an individual when the world is created.
              */
-            configuracion.setMinInitDepth(sr.minInitDepth);
+            configuracion.setMinInitDepth(sr.minProf);
             /**
              * If m_strictProgramCreation is false: Maximum number of tries to construct
              * a valid program.
              */
-            configuracion.setProgramCreationMaxTries(sr.programCreationMaxTries);
-            GPProblem problem = new SymbolicRegression(configuracion);
+            configuracion.setProgramCreationMaxTries(sr.masInten);
+            GPProblem problem = new ProgramacionGenetica(configuracion);
             
             sr.main(s, 0, f, problem);
 

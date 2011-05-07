@@ -7,7 +7,7 @@
 package Interfaz;
 
 import Genetica.EvaluarFit;
-import Genetica.SymbolicRegression;
+import Genetica.ProgramacionGenetica;
 import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -121,13 +121,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void Ejecutar() throws Exception{
-        SymbolicRegression SR=new SymbolicRegression();
+        ProgramacionGenetica SR=new ProgramacionGenetica();
         EvaluarFit ef = new EvaluarFit();
         SR.setCols(numeroEntradas);
         ef.numCol =SR.getCols();
         ef.varEntrada =numeroVariables;
-        SR.populationSize=100;
-        SR.numEvolutions=1800;       
+        SR.poblacion=100;
+        SR.generaciones=1800;
         ef.datos=new Double[ef.varEntrada + 1][ef.numCol];
         for (int i = 0; i < ef.varEntrada + 1; i++) {
             for (int j = 0; j < ef.numCol; j++) {
@@ -147,9 +147,8 @@ public class Principal extends javax.swing.JFrame {
         if(jRadioButton9.isSelected()) funciones+="Cosine,";
         if(jRadioButton10.isSelected()) funciones+="Exp,";
         SR.functions=funciones.substring(0, funciones.length()-1).split(",");
-        if(numeroVariables==1)SR.variableNames = "X,Y".split(",");
-        if(numeroVariables==2)SR.variableNames = "X,Y,Z".split(",");
-        SR.presentation = "Funcion";
+        if(numeroVariables==1)SR.nomVars = "X,Y".split(",");
+        if(numeroVariables==2)SR.nomVars = "X,Y,Z".split(",");        
         String[] args={""};
         new Hilo(SR,args,this,0).start();
     }
