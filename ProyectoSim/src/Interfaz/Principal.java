@@ -148,27 +148,24 @@ public class Principal extends javax.swing.JFrame {
     public void Ejecutar() throws Exception{
         SymbolicRegression SR=new SymbolicRegression();
         EvaluarFit ef = new EvaluarFit();
-        ef.numCol = SR.numRows=datosx.size(); //Colocar en cfg
-        ef.varEntrada = SR.numInputVariables=numeroVariables;
+        SR.setCols(datosx.size());
+        ef.numCol =SR.getCols();
+        ef.varEntrada =numeroVariables;
         SR.populationSize=100;
-        SR.numEvolutions=1800;
-        SR.data=new Double[SR.numInputVariables + 1][SR.numRows];
-        ef.datos=new Double[SR.numInputVariables + 1][SR.numRows];
-        for (int i = 0; i < SR.numInputVariables + 1; i++) {
-            for (int j = 0; j < SR.numRows; j++) {
+        SR.numEvolutions=1800;       
+        ef.datos=new Double[ef.varEntrada + 1][ef.numCol];
+        for (int i = 0; i < ef.varEntrada + 1; i++) {
+            for (int j = 0; j < ef.numCol; j++) {
                 if(i==0)
-                {
-                    SR.data[i][j] = new Double(datosx.get(j));
+                {                    
                     ef.datos[i][j] = new Double(datosx.get(j));
                 }
                 if(i==1)
-                {
-                    SR.data[i][j] = new Double(datosy.get(j));
+                {                    
                     ef.datos[i][j] = new Double(datosy.get(j));
                 }
                 if(i==2)
-                {
-                    SR.data[i][j] = new Double(datosz.get(j));
+                {                    
                     ef.datos[i][j] = new Double(datosz.get(j));
                 }
             }

@@ -54,33 +54,23 @@ import org.jgap.util.*;
  */
 public class SymbolicRegression extends GPProblem {
 
-  public static Principal ventana;
-  
-  public static Double[] results;
-  private EvaluarFit es = new EvaluarFit();
-  // number of variables to use (output variable is excluded)
-  public static int numInputVariables;
+  public static int cols;
 
-  // the variables to use (of size numInputVariables)
-  public static Variable[] variables;
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+  public static Principal ventana;
+  private EvaluarFit es = new EvaluarFit();
 
   // variable name
   public static String[] variableNames;
-
-  // index of the output variable
-  public static Integer outputVariable; // default last
-
   public static int[] ignoreVariables; // TODO
-
   // constants
   public static ArrayList<Double> constants = new ArrayList<Double> ();
-
-  // size of data
-  public static int numRows;
-
-  // the data (as Double)
-  // Note: the last row is the output variable per default
-  public static Double[][] data;
 
   // If we have found a perfect solution.
   public static boolean foundPerfect = false;
@@ -146,21 +136,6 @@ public class SymbolicRegression extends GPProblem {
   // Note: Very simplistic version.
   // public static boolean punishLength = false;
 
-  // if the values are too small we may want to scale
-  // the error
-  public static double scaleError = -1.0d;
-
-  // "bumping" is when we found a "perfect solution" and
-  // want to see more "perfect solutions"
-  public static boolean bumpPerfect = false;
-
-  // the limit for which we should show all (different) solutions
-  public static Double bumpValue = 0.0000;
-
-  // checks for already shown solution when bumping
-  private static HashMap<String, Integer> foundSolutions = new HashMap<String,
-      Integer> ();
-
   // timing
   public static long startTime;
 
@@ -174,11 +149,7 @@ public class SymbolicRegression extends GPProblem {
 
   public static boolean showSimiliar = false;
 
-  ///--------------------------------------------------------------------------
-  ///Constructor
-  ///--------------------------------------------------------------------------
   public SymbolicRegression(){
-
   }
 
   public SymbolicRegression(GPConfiguration a_conf)
@@ -228,28 +199,28 @@ public class SymbolicRegression extends GPProblem {
         upperRange, "plain");
     // Create the node sets
     int command_len = commands.length;
-    CommandGene[][] nodeSets = new CommandGene[2][numInputVariables +
+    CommandGene[][] nodeSets = new CommandGene[2][es.varEntrada +
         command_len];
     // the variables:
     //  1) in the nodeSets matrix
     //  2) as variables (to be used for fitness checking)
     // --------------------------------------------------
-    es.variables = new Variable[numInputVariables];
-    variables = new Variable[numInputVariables];
+    es.variables = new Variable[es.varEntrada];
+    es.variables = new Variable[es.varEntrada];
     int variableIndex = 0;
-    for (int i = 0; i < numInputVariables + 1; i++) {
+    for (int i = 0; i < es.varEntrada + 1; i++) {
       String variableName = variableNames[i];
-      if (i != outputVariable) {
+      if (i != es.outputVariable) {
         if (variableNames != null && variableNames.length > 0) {
           variableName = variableNames[i];
         }
         es.variables[variableIndex] = Variable.create(conf, variableName,
             CommandGene.DoubleClass);
-        variables[variableIndex] = Variable.create(conf, variableName,
+        es.variables[variableIndex] = Variable.create(conf, variableName,
             CommandGene.DoubleClass);
-        nodeSets[0][variableIndex] = variables[variableIndex];
-        ventana.RenovarText("\n"+"Variables de Entrada: " + variables[variableIndex]);///
-        System.out.println("input variable: " + variables[variableIndex]);
+        nodeSets[0][variableIndex] = es.variables[variableIndex];
+        ventana.RenovarText("\n"+"Variables de Entrada: " + es.variables[variableIndex]);///
+        System.out.println("input variable: " + es.variables[variableIndex]);
         variableIndex++;
       }
     }
@@ -281,7 +252,7 @@ public class SymbolicRegression extends GPProblem {
           ventana.RenovarText("sin, ");
       if(commands[i].toString().contains("cosine"))
           ventana.RenovarText("cos, ");
-      nodeSets[0][i + numInputVariables] = commands[i];
+      nodeSets[0][i + es.varEntrada] = commands[i];
     }
 
     
@@ -295,16 +266,9 @@ public class SymbolicRegression extends GPProblem {
     // declarations made above:
     // ----------------------------------------------------------
     return GPGenotype.randomInitialGenotype(conf, types, argTypes, nodeSets,
-        maxNodes, verboseOutput);
-    // this is experimental
-    // return GPGenotype.randomInitialGenotype(conf, types, argTypes, nodeSets,
-    //                             minDepths,maxDepths, maxNodes, fullModeAllowed,verboseOutput);
-
+        maxNodes, verboseOutput);    
   }
-
-  //
-  // Transpose matrix
-  // ----------------
+  
   public static Double[][] transposeMatrix(Double[][] m) {
     int r = m.length;
     int c = m[0].length;
@@ -315,7 +279,7 @@ public class SymbolicRegression extends GPProblem {
       }
     }
     return t;
-  } // end transposeMatrix
+  } 
 
   /*
    *  makeCommands:
@@ -818,7 +782,8 @@ public class SymbolicRegression extends GPProblem {
 
     //////
     ventana.series2 = new  XYSeries("XYGraph");
-    for(int j=0;j<numRows;j++){
+
+    for(int j=0;j<cols;j++){
 
 
         ScriptEngineManager mgr = new ScriptEngineManager();

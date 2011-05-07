@@ -32,19 +32,17 @@ public class Hilo extends Thread{
     public void run() {          // sobrecarga el metodo run la clase Thread
         try {
             // sobrecarga el metodo run la clase Thread
-            es.results = new Double[sr.numRows];
-            sr.results=new Double[sr.numRows];
+            es.results = new Double[es.numCol];
 
             sr.ventana=f;
             //f.RenovarText("Presentation: " + sr.presentation);
             //System.out.println("Presentation: " + sr.presentation);
-            if (sr.outputVariable == null) {
-              sr.outputVariable = sr.numInputVariables;
-              es.outputVariable = sr.numInputVariables;
-            }
+            if (es.outputVariable == null)
+              es.outputVariable = es.varEntrada;
+           
             if (sr.variableNames == null) {
-              sr.variableNames = new String[sr.numInputVariables + 1];
-              for (int i = 0; i < sr.numInputVariables + 1; i++) {
+              sr.variableNames = new String[es.varEntrada + 1];
+              for (int i = 0; i < es.varEntrada + 1; i++) {
                 sr.variableNames[i] = "V" + i;
               }
             }

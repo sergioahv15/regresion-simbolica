@@ -15,6 +15,15 @@ public class EvaluarFit
 
    // If we have found a perfect solution.
   public static boolean foundPerfect = false;
+  private int cols;
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
+    public int getCols() {
+        return cols;
+    }
 
     public static void setBumpPerfect(boolean bumpPerfect) {
         EvaluarFit.bumpPerfect = bumpPerfect;
@@ -131,10 +140,6 @@ public class EvaluarFit
 
    // the variables to use (of size numInputVariables)
    public static Variable[] variables;
-
-   public EvaluarFit()
-   {
-   }
       
    public static class EvaluarFitness extends GPFitnessFunction
    {
