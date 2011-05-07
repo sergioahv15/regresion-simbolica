@@ -226,38 +226,44 @@ public class ProgramacionGenetica extends GPProblem {
     //Crear el genotipo para el problema
     GPGenotype gp = problem.create();   
     gp.setVerboseOutput(false);
+    double maxFit = -1.0;
 
     //Pedir el tiempo para tener idea de cuanto se demora el algoritmo
     tInicio = System.currentTimeMillis();
    
-    IGPProgram fittest = null;
-    double bestFit = -1.0d;
-    String bestProgram = "";
-    int bestGen = 0;
+    IGPProgram test = null;
+    IGPProgram fActual;
+    //map que guarda las soluciones si tienen un fitness igual o mejor que el error permitido
     HashMap<String, Integer> similiar = null;
 
+    //Si queremos ver los resultados instanciamos el map
     if (verSim)
       similiar = new HashMap<String, Integer> ();
     
     for (int gen = 1; gen <= generaciones; gen++)
     {
-       gp.evolve(); // evolve one generation
-       gp.calcFitness();
-       GPPopulation pop = gp.getGPPopulation();
-       IGPProgram thisFittest = pop.determineFittestProgram();
+       gp.evolve();//Generamos la evolucion
+       gp.calcFitness();  //Calcular el fitnees
+
+       //Obtener la poblacion y encontrar para cada individuo su fitness
+       GPPopulation poblac = gp.getGPPopulation();
+       fActual = poblac.determineFittestProgram();
       
-       thisFittest.setApplicationData( (Object) ("gen" + gen));
-       ProgramChromosome chrom = thisFittest.getChromosome(0);
-       String program = chrom.toStringNorm(0);
-       double fitness = thisFittest.getFitnessValue();
+       fActual.setApplicationData( (Object) ("gen" + gen));             
+       double fitness = fActual.getFitnessValue();
+       
+       //Si se desean ver resultados que sean iguales al mejor que se ha encontrado
        if (verSim)
        {
-          pop.sortByFitness();
+          //ordenar la poblacion por fitness de menor a mayo
+          poblac.sortByFitness();
 
-          for (IGPProgram p : pop.getGPPrograms()) {
+          //Ciclo que va atravez de todos los objetos que estan en la poblacion
+          for (IGPProgram p : poblac.getGPPrograms()) {
              double fit = p.getFitnessValue();
              
-             if (verSim && fit <= bestFit)
+             //Guardar soluciones si las condiciones se cumplen
+             if (verSim && fit <= maxFit)
              {
                 String prog = p.toStringNorm(0);
 
@@ -270,20 +276,19 @@ public class ProgramacionGenetica extends GPProblem {
           }
        }
       
-      if (bestFit < 0.0d || fitness < bestFit) {
-        bestGen = gen;
-        mostrarDatos(thisFittest, gen);
-        bestFit = fitness;
-        bestProgram = program;
-        fittest = thisFittest;
+      //Mostramos los datos si el fitness actual es mejor que el anterior
+      if (maxFit < 0.0d || fitness < maxFit) {
+         maxFit = gen;
+         mostrarDatos(fActual, gen);
+         maxFit = fitness;
+         test = fActual;
 
         //Limpiar la estructura para guardar las siguientes soluciones
         if (verSim)
-          similiar.clear();
-        
+          similiar.clear();        
       }      
     }
-    mostrarDatos(fittest, generaciones);
+    mostrarDatos(test, generaciones);
     
     //Pedir el tiempo para restarlo con el que se pidio al principio y asi saber
     //Cuanto se demora el algo
