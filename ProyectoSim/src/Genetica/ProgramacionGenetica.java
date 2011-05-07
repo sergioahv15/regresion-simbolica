@@ -83,6 +83,8 @@ public class ProgramacionGenetica extends GPProblem {
  //metodo heredado de la GPProblem se utiliza para configurar los parametros
  //del genetico
  public GPGenotype create() throws InvalidConfigurationException {
+    int ind = 0;
+
     Class[] clases;
     Class[][] clasesP;
     GPConfiguration config = getGPConfiguration();
@@ -91,40 +93,37 @@ public class ProgramacionGenetica extends GPProblem {
     clases = new Class[] {CommandGene.DoubleClass};
     clasesP = new Class[][] {{}};
    
-    //
-    CommandGene[] comandos = makeCommands(config, functions, comIntervalo,
-        finIntervalo, "plain");
-    // Create the node sets
-    int command_len = comandos.length;
-    CommandGene[][] nodeSets = new CommandGene[2][es.varEntrada +
-        command_len];
-    // the variables:
-    //  1) in the nodeSets matrix
-    //  2) as variables (to be used for fitness checking)
-    // --------------------------------------------------
+    //Configuramos las funciones que vamos a usar para generar los arboles y
+    //el intervalo para comparar los datos
+    CommandGene[] comandos = makeCommands(config, functions, comIntervalo, finIntervalo, "plain");
+   
+    //Se crean los nodos
+    CommandGene[][] nodos = new CommandGene[2][es.varEntrada + comandos.length];
+    
+    //Se asignan al vector varialbes las varialbes de entrada
     es.variables = new Variable[es.varEntrada];
-    es.variables = new Variable[es.varEntrada];
-    int variableIndex = 0;
+    
     for (int i = 0; i < es.varEntrada + 1; i++) {
-      String variableName = nomVars[i];
-      if (i != es.variableSal) {
-        if (nomVars != null && nomVars.length > 0) {
-          variableName = nomVars[i];
-        }
-        es.variables[variableIndex] = Variable.create(config, variableName,
-            CommandGene.DoubleClass);
-        es.variables[variableIndex] = Variable.create(config, variableName,
-            CommandGene.DoubleClass);
-        nodeSets[0][variableIndex] = es.variables[variableIndex];
-        ventana.RenovarText("\n"+"Variables de Entrada: " + es.variables[variableIndex]);        
-        variableIndex++;
+      String nomvar = nomVars[i];
+      
+      //Si es variable de entrada
+      if (i != es.variableSal)
+      {
+        if (nomVars != null && nomVars.length > 0)
+          nomvar = nomVars[i];
+      
+        es.variables[ind] = Variable.create(config, nomvar,CommandGene.DoubleClass);
+        es.variables[ind] = Variable.create(config, nomvar,CommandGene.DoubleClass);
+        nodos[0][ind] = es.variables[ind];
+        ventana.RenovarText("\n"+"Variables de Entrada: " + es.variables[ind]);
+        ind++;
       }
     }
 
      //Este ciclo permite mostrar al usuario que funciones se estan usando
      //Para encontrar la solucion.
      ventana.RenovarText("\n"+"Operaciones definidas: ");
-      for (int i = 0; i < command_len; i++) {
+      for (int i = 0; i < comandos.length; i++) {
           if(comandos[i].toString().contains("+"))
               ventana.RenovarText("+, ");
           if(comandos[i].toString().contains("-")  && !comandos[i].toString().contains("&"))
@@ -149,32 +148,14 @@ public class ProgramacionGenetica extends GPProblem {
               ventana.RenovarText("Exp, ");
 
           //Colocar una operacion en el nodo actual del arbol
-          nodeSets[0][i + es.varEntrada] = comandos[i];
+          nodos[0][i + es.varEntrada] = comandos[i];
      }
    
     //Comenzando se genera una configuracion al azar para mejorar desde esta
-     return GPGenotype.randomInitialGenotype(config, clases, clasesP, nodeSets, maxNodos, salida);
+     return GPGenotype.randomInitialGenotype(config, clases, clasesP, nodos, maxNodos, salida);
   }
-  
-  public static Double[][] transposeMatrix(Double[][] m) {
-    int r = m.length;
-    int c = m[0].length;
-    Double[][] t = new Double[c][r];
-    for (int i = 0; i < r; ++i) {
-      for (int j = 0; j < c; ++j) {
-        t[j][i] = m[i][j];
-      }
-    }
-    return t;
-  } 
-
-  /*
-   *  makeCommands:
-   *  makes the CommandGene array given the function listed in the
-   *  configurations file
-   *  ------------------------------------------------------------
-   */
-  static CommandGene[] makeCommands(GPConfiguration conf, String[] functions,
+ 
+ public  static CommandGene[] makeCommands(GPConfiguration conf, String[] functions,
                                     Double lowerRange, Double upperRange,
                                     String type) {
     ArrayList<CommandGene> commandsList = new ArrayList<CommandGene> ();
@@ -251,14 +232,7 @@ public class ProgramacionGenetica extends GPProblem {
     //
     // I'm rolling my own to to be able to control output better etc.
     //
-    /*ventana.RenovarText("\n"+"Creating initial population");///
-    System.out.println("Creating initial population");
-    ventana.RenovarText("\n"+"Mem free: "
-                       + SystemKit.niceMemory(SystemKit.getTotalMemoryMB()) +
-                       " MB");///
-    System.out.println("Mem free: "
-                       + SystemKit.niceMemory(SystemKit.getTotalMemoryMB()) +
-                       " MB");*/
+   
     IGPProgram fittest = null;
     double bestFit = -1.0d;
     String bestProgram = "";
@@ -343,26 +317,28 @@ public class ProgramacionGenetica extends GPProblem {
   }
 
   //Resultados del algoritmo
-  public static void mostrarDatos(IGPProgram a_best, int gen) throws ScriptException {
+  public static void mostrarDatos(IGPProgram mejor, int gen) throws ScriptException {
      
-    if (a_best == null) {
+    if (mejor == null) {
       ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");      
       return;
     }
-    double bestValue = a_best.getFitnessValue();
-    if (Double.isInfinite(bestValue)) {
+    
+    //Si el fitnees es muy grande la solucion es muy mala y se muestra el mensaje
+    if (Double.isInfinite(mejor.getFitnessValue())) {
       ventana.RenovarText("\n"+"No se encontro una buena solucion tal vez no sea funcion!!");   
       return;
     }
-    ventana.RenovarText("\n"+"Mejor fitness encontrado: " +
-                       NumberKit.niceDecimalNumber(bestValue, 2));
-   
+    //Se muestra el mejor fitnness encontrado hasta el momento
+    ventana.RenovarText("\n"+"Mejor fitness encontrado: " + NumberKit.niceDecimalNumber(mejor.getFitnessValue(), 2));
     ventana.series2 = new  XYSeries("XYGraph");
 
+    //Pintamos los datos de la funcion que tenemos actualmente esto ocurre
+    //si y solo si los datos estan en dos dimensiones
     for(int j=0;j<cols;j++){
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        String cromo=a_best.toStringNorm(0);
+        String cromo=mejor.toStringNorm(0);
         String cromocop="";
         cromocop=new Transformar().devolver(" "+cromo, ventana, j);
         while(new Transformar().verificar(cromocop)){
@@ -372,8 +348,10 @@ public class ProgramacionGenetica extends GPProblem {
         double y = (Double)engine.eval(cromocop);
         ventana.series2.add(x, y);
     }
-    ventana.RenovarImagen();    
-    ventana.RenovarText("\n"+"Mejor Solucion: " + a_best.toStringNorm(0));    
+
+    //Mostramos la grafica de la funcion que tenemos actualmente
+    ventana.RenovarImagen();
+    ventana.RenovarText("\n"+"Mejor Solucion: " + mejor.toStringNorm(0));
     
   }
 
