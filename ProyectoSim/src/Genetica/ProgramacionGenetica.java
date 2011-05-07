@@ -155,62 +155,70 @@ public class ProgramacionGenetica extends GPProblem {
      return GPGenotype.randomInitialGenotype(config, clases, clasesP, nodos, maxNodos, salida);
   }
  
- public  static CommandGene[] makeCommands(GPConfiguration conf, String[] functions,
-                                    Double lowerRange, Double upperRange,
-                                    String type) {
-    ArrayList<CommandGene> commandsList = new ArrayList<CommandGene> ();
-    int len = functions.length;
+ //Añadir las funciones con las que contamos a los comandos que puede usar el programa
+ //para añdir mas funciones se debe generar un nombre y definir la funcion o
+ //usar las funciones que define java
+ public  static CommandGene[] generarC(GPConfiguration config,
+                              String[] func, Double iniInterval, Double finInterval, String tipo) {
+    
+    //Arreglo que guarda las funciones que vamos a usar 
+    ArrayList<CommandGene> comandos = new ArrayList<CommandGene> ();
+   
+    //Ciclo que nos permite añadir las funciones que hemos definido
     try {
-      for (int i = 0; i < len; i++) {        
-        if ("Multiply".equals(functions[i])) 
-          commandsList.add(new Multiply(conf, CommandGene.DoubleClass));
+      for (int i = 0; i < functions.length; i++) {
+        if ("Multiply".equals(func[i])) 
+          comandos.add(new Multiply(config, CommandGene.DoubleClass));
 
-        else if ("Add".equals(functions[i]))
-          commandsList.add(new Add(conf, CommandGene.DoubleClass));          
+        else if ("Add".equals(func[i]))
+          comandos.add(new Add(config, CommandGene.DoubleClass));
        
-        else if ("Divide".equals(functions[i])) 
-          commandsList.add(new Divide(conf, CommandGene.DoubleClass));
+        else if ("Divide".equals(func[i])) 
+          comandos.add(new Divide(config, CommandGene.DoubleClass));
         
-        else if ("Subtract".equals(functions[i]))
-          commandsList.add(new Subtract(conf, CommandGene.DoubleClass));          
+        else if ("Subtract".equals(func[i]))
+          comandos.add(new Subtract(config, CommandGene.DoubleClass));
        
-        else if ("Sine".equals(functions[i])) 
-          commandsList.add(new Sine(conf, CommandGene.DoubleClass)); 
+        else if ("Sine".equals(func[i])) 
+          comandos.add(new Sine(config, CommandGene.DoubleClass));
         
-        else if ("Cosine".equals(functions[i])) 
-          commandsList.add(new Cosine(conf, CommandGene.DoubleClass));       
+        else if ("Cosine".equals(func[i])) 
+          comandos.add(new Cosine(config, CommandGene.DoubleClass));
        
-        else if ("Exp".equals(functions[i])) 
-          commandsList.add(new Exp(conf, CommandGene.DoubleClass));
+        else if ("Exp".equals(func[i])) 
+          comandos.add(new Exp(config, CommandGene.DoubleClass));
         
-        else if ("Log".equals(functions[i])) 
-          commandsList.add(new Log(conf, CommandGene.DoubleClass));
+        else if ("Log".equals(func[i])) 
+          comandos.add(new Log(config, CommandGene.DoubleClass));
         
-        else if ("Abs".equals(functions[i])) 
-          commandsList.add(new Abs(conf, CommandGene.DoubleClass));
+        else if ("Abs".equals(func[i])) 
+          comandos.add(new Abs(config, CommandGene.DoubleClass));
         
-        else if ("Pow".equals(functions[i])) 
-          commandsList.add(new Pow(conf, CommandGene.DoubleClass));       
+        else if ("Pow".equals(func[i])) 
+          comandos.add(new Pow(config, CommandGene.DoubleClass));
         
-        else if ("Sqrt".equals(functions[i])) 
-          commandsList.add(new Sqrt(conf, CommandGene.DoubleClass));   
+        else if ("Sqrt".equals(func[i])) 
+          comandos.add(new Sqrt(config, CommandGene.DoubleClass));
       }
 
-      commandsList.add(new Terminal(conf, CommandGene.DoubleClass, lowerRange,
-                                    upperRange, finalizarIte));
+      comandos.add(new Terminal(config, CommandGene.DoubleClass, iniInterval,
+                                    finInterval, finalizarIte));
      
+      //Si podemos meter constantes para generar la funcion
       if (constantes != null) {
         for (int i = 0; i < constantes.size(); i++) {
           Double constant = constantes.get(i);
-          commandsList.add(new Constant(conf, CommandGene.DoubleClass, constant));
+          comandos.add(new Constant(config, CommandGene.DoubleClass, constant));
         }
       }
     } catch (Exception e) {
       System.out.println(e);
+      System.out.println("Ocurrio un error intentando meter las funciones para operar");
     }
-    CommandGene[] commands = new CommandGene[commandsList.size()];
-    commandsList.toArray(commands);
-    return commands;
+    
+    CommandGene[] com = new CommandGene[comandos.size()];
+    comandos.toArray(com);
+    return com;
   }
 
   public static void main(String[] args, int caso, Principal frame, GPProblem problem) throws Exception {
