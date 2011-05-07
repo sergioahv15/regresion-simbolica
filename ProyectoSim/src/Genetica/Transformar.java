@@ -1,7 +1,16 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package Genetica;
 
 import Interfaz.Principal;
 
+/**
+ *
+ * @author Diego Diego Chapeton and Fabian Sanin
+ */
 public class Transformar {
 
     public Transformar(){
@@ -26,10 +35,10 @@ public class Transformar {
 
                 else if(cromo.charAt(i) == 's' && cromo.charAt(i+1) == 'q' && cromo.charAt(i-1)!='.') {
                     cromocop+="Math.sqrt";
-                    if(cromo.charAt(i+5)!='('){
+                    if(cromo.charAt(i+4)!='('){
                         cromocop+="(";
                         int contador=0;
-                        for(int k=i+5;k<cromo.length() && cromo.charAt(k)!=')';k++){
+                        for(int k=i+4;k<cromo.length() && cromo.charAt(k)!=')';k++){
                             if(cromo.charAt(k)=='X') cromocop+=ventana.datos[0][j];
                             else cromocop += cromo.charAt(k);
                             contador++;
@@ -37,7 +46,7 @@ public class Transformar {
                         i+=contador;
                         cromocop+=")";
                     }
-                    i+=4;
+                    i+=3;
                 }
 
                 else if(cromo.charAt(i) == 's' && cromo.charAt(i+1) == 'i' && cromo.charAt(i-1)!='.') {

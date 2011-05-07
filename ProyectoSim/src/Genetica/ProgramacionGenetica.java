@@ -19,6 +19,10 @@ import org.jgap.gp.impl.*;
 import org.jgap.gp.terminal.*;
 import org.jgap.util.*;
 
+/**
+ *
+ * @author Diego Chapeton and Fabian Sanin
+ */
 public class ProgramacionGenetica extends GPProblem {
 
   public static int cols;// numero de datos
@@ -215,7 +219,7 @@ public class ProgramacionGenetica extends GPProblem {
       System.out.println(e);
       System.out.println("Ocurrio un error intentando meter las funciones para operar");
     }
-    
+
     CommandGene[] com = new CommandGene[comandos.size()];
     comandos.toArray(com);
     return com;
@@ -249,7 +253,7 @@ public class ProgramacionGenetica extends GPProblem {
        GPPopulation poblac = gp.getGPPopulation();
        fActual = poblac.determineFittestProgram();
       
-       fActual.setApplicationData( (Object) ("gen" + gen));             
+       fActual.setApplicationData( (Object) ("gen" + gen));
        double fitness = fActual.getFitnessValue();
        
        //Si se desean ver resultados que sean iguales al mejor que se ha encontrado
@@ -294,6 +298,7 @@ public class ProgramacionGenetica extends GPProblem {
     //Cuanto se demora el algo
     tFin = System.currentTimeMillis();
     ventana.RenovarText("\n"+"\nEl tiempo de ejecucion fue: " + (tFin - tInicio) + "ms");
+    ventana.estadoBoton(true);
     
   }
 
@@ -316,22 +321,25 @@ public class ProgramacionGenetica extends GPProblem {
 
     //Pintamos los datos de la funcion que tenemos actualmente esto ocurre
     //si y solo si los datos estan en dos dimensiones
-    for(int j=0;j<cols;j++){
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        String cromo=mejor.toStringNorm(0);
-        String cromocop="";
-        cromocop=new Transformar().devolver(" "+cromo, ventana, j);
-        while(new Transformar().verificar(cromocop)){
-            cromocop=new Transformar().devolver(cromocop, ventana, j);
+    if(ventana.numeroVariables==1){
+        ventana.series2 = new  XYSeries("XYGraph");
+        for(int j=0;j<cols;j++){
+            ScriptEngineManager mgr = new ScriptEngineManager();
+            ScriptEngine engine = mgr.getEngineByName("JavaScript");
+            String cromo=mejor.toStringNorm(0);
+            String cromocop="";
+            cromocop=new Transformar().devolver(" "+cromo, ventana, j);
+            while(new Transformar().verificar(cromocop)){
+                cromocop=new Transformar().devolver(cromocop, ventana, j);
+            }
+            double x=ventana.datos[0][j];
+            //System.out.println(cromo);
+            //System.out.println(cromocop);
+            double y=(Double)engine.eval(cromocop);
+            ventana.series2.add(x, y);
         }
-        double x = ventana.datos[0][j];
-        double y = (Double)engine.eval(cromocop);
-        ventana.series2.add(x, y);
+        ventana.RenovarImagen();
     }
-
-    //Mostramos la grafica de la funcion que tenemos actualmente
-    ventana.RenovarImagen();
     ventana.RenovarText("\n"+"Mejor Solucion: " + mejor.toStringNorm(0));
     
   }

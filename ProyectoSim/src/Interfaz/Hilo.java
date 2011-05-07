@@ -10,7 +10,7 @@ import org.jgap.gp.impl.TournamentSelector;
 
 /**
  *
- * @author Diego
+ * @author Diego Chapeton and Fabian Sanin
  */
 public class Hilo extends Thread{
 
@@ -31,84 +31,61 @@ public class Hilo extends Thread{
         try {
             // sobrecarga el metodo run la clase Thread
             es.results = new Double[es.numCol];
-
             sr.ventana=f;
             //f.RenovarText("Presentation: " + sr.presentation);
             //System.out.println("Presentation: " + sr.presentation);
-            if (es.variableSal == null)
-              es.variableSal = es.varEntrada;
-           
-            if (sr.nomVars == null) {
-              sr.nomVars = new String[es.varEntrada + 1];
-              for (int i = 0; i < es.varEntrada + 1; i++) {
-                sr.nomVars[i] = "V" + i;
-              }
-            }
-
+            es.variableSal = es.varEntrada;
             //La variable configuracion contiene los parametros con los que
             //se ejecuta el algoritmo genetico
             GPConfiguration configuracion = new GPConfiguration();
-            // We use a delta fitness evaluator because we compute a defect rate, not
-            // a point score!
-            // ----------------------------------------------------------------------
+            // Se configura el Fitness
             configuracion.setGPFitnessEvaluator(new DeltaGPFitnessEvaluator());
             configuracion.setMaxInitDepth(sr.maxProf);
             configuracion.setPopulationSize(sr.poblacion);
-            // Default selectionMethod is is TournamentSelector(3)
+
             if (sr.tamTorneo > 0) {
               configuracion.setSelectionMethod(new TournamentSelector(sr.tamTorneo));
             }
             /**
-             * The maximum depth of an individual resulting from crossover.
+             * La profundidad maxima de un resultado de cruce.
              */
             configuracion.setMaxCrossoverDepth(sr.profCruce);
             configuracion.setFitnessFunction(new EvaluarFit.EvaluarFitness());
-            /**
-             * @param a_strict true: throw an error during evolution in case a situation
-             * is detected where no function or terminal of a required type is declared
-             * in the GPConfiguration; false: don't throw an error but try a completely
-             * different combination of functions and terminals
-             */
-            // config.setStrictProgramCreation(true);
+            
             configuracion.setStrictProgramCreation(false);
-            // Default from GPConfiguration.java
 
             /**
-             * In crossover: If random number (0..1) < this value, then choose a function
-             * otherwise a terminal.
+             * En un cruce: si el numero aleatorio (0..1) < este valor, entonces selleciona una funcion
+             * de otro modo una terminal.
              */
             configuracion.setFunctionProb(sr.probFunc);
             /**
-             * The probability that a reproduction operation is chosen during evolution.
-             * Must be between 0.0d and 1.0d. crossoverProb + reproductionProb must equal
-             * 1.0d.
+             * La probabilidad de que una operación de reproducción se eliga durante la evolución.
+             * Debe estar entre 0.0d y 1.0d. proCruce + proReproduccion = 1.0d
              */
             configuracion.setReproductionProb(sr.probRepro);
             /**
-             * The probability that a node is mutated during growing a program.
+             * La probabilidad de Mutuacion
              */
             configuracion.setMutationProb(sr.probMuta);
                   
             /**
-             * Percentage of the population that will be filled with new individuals
-             * during evolution. Must be between 0.0d and 1.0d.
+             * Porcentaje de la población que estará lleno de nuevos individuos
+             * durante la evolucion.
              */
             configuracion.setNewChromsPercent(sr.nCromo);
             /**
-             * The minimum depth of an individual when the world is created.
+             * La profundidad minima de un individuo cuando el mundo es creado
              */
             configuracion.setMinInitDepth(sr.minProf);
-            /**
-             * If m_strictProgramCreation is false: Maximum number of tries to construct
-             * a valid program.
-             */
+            
             configuracion.setProgramCreationMaxTries(sr.masInten);
             GPProblem problem = new ProgramacionGenetica(configuracion);
             
             sr.main(s, 0, f, problem);
 
         } catch (Exception ex) {
-            System.out.print("no corre el hilo;");
+            System.out.print("Error en el Hilo");
         }
    }
 }
