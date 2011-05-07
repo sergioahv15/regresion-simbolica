@@ -95,7 +95,7 @@ public class ProgramacionGenetica extends GPProblem {
    
     //Configuramos las funciones que vamos a usar para generar los arboles y
     //el intervalo para comparar los datos
-    CommandGene[] comandos = makeCommands(config, functions, comIntervalo, finIntervalo, "plain");
+    CommandGene[] comandos = generarC(config, functions, comIntervalo, finIntervalo, "plain");
    
     //Se crean los nodos
     CommandGene[][] nodos = new CommandGene[2][es.varEntrada + comandos.length];
@@ -221,110 +221,78 @@ public class ProgramacionGenetica extends GPProblem {
     return com;
   }
 
-  public static void main(String[] args, int caso, Principal frame, GPProblem problem) throws Exception {
-
-    // Create the genotype of the problem, i.e., define the GP commands and
-    // terminals that can be used, and constrain the structure of the GP
-    // program.
-    // --------------------------------------------------------------------
-    GPGenotype gp = problem.create();
-    // gp.setVerboseOutput(true);
+ //Funcion que crea el genotipo y define todo lo necesario para empezar el genetico
+ public static void main(String[] args, int caso, Principal frame, GPProblem problem) throws Exception {
+    //Crear el genotipo para el problema
+    GPGenotype gp = problem.create();   
     gp.setVerboseOutput(false);
-    tInicio = System.currentTimeMillis();
-    // Start the computation with maximum 800 evolutions.
-    // if a satisfying result is found (fitness value almost 0), JGAP stops
-    // earlier automatically.
-    // --------------------------------------------------------------------
-    // gp.evolve(numEvolutions);
 
-    //
-    // I'm rolling my own to to be able to control output better etc.
-    //
+    //Pedir el tiempo para tener idea de cuanto se demora el algoritmo
+    tInicio = System.currentTimeMillis();
    
     IGPProgram fittest = null;
     double bestFit = -1.0d;
     String bestProgram = "";
     int bestGen = 0;
     HashMap<String, Integer> similiar = null;
-    if (verSim) {
+
+    if (verSim)
       similiar = new HashMap<String, Integer> ();
-    }
-    for (int gen = 1; gen <= generaciones; gen++) {
-      gp.evolve(); // evolve one generation
-      gp.calcFitness();
-      GPPopulation pop = gp.getGPPopulation();
-      IGPProgram thisFittest = pop.determineFittestProgram();
-      // TODO: Here I would like to have the correlation coefficient etc
-      thisFittest.setApplicationData( (Object) ("gen" + gen));
-      ProgramChromosome chrom = thisFittest.getChromosome(0);
-      String program = chrom.toStringNorm(0);
-      double fitness = thisFittest.getFitnessValue();
-      if (verSim) {
-        pop.sortByFitness();
-        for (IGPProgram p : pop.getGPPrograms()) {
-          double fit = p.getFitnessValue();
-          if (verSim && fit <= bestFit) {
-            String prog = p.toStringNorm(0);
-            if (!similiar.containsKey(prog)) {
-              similiar.put(prog, 1);
-            }
-            else {
-              similiar.put(prog, similiar.get(prog) + 1);
-            }
+    
+    for (int gen = 1; gen <= generaciones; gen++)
+    {
+       gp.evolve(); // evolve one generation
+       gp.calcFitness();
+       GPPopulation pop = gp.getGPPopulation();
+       IGPProgram thisFittest = pop.determineFittestProgram();
+      
+       thisFittest.setApplicationData( (Object) ("gen" + gen));
+       ProgramChromosome chrom = thisFittest.getChromosome(0);
+       String program = chrom.toStringNorm(0);
+       double fitness = thisFittest.getFitnessValue();
+       if (verSim)
+       {
+          pop.sortByFitness();
+
+          for (IGPProgram p : pop.getGPPrograms()) {
+             double fit = p.getFitnessValue();
+             
+             if (verSim && fit <= bestFit)
+             {
+                String prog = p.toStringNorm(0);
+
+                if (!similiar.containsKey(prog))
+                   similiar.put(prog, 1);
+           
+                else
+                   similiar.put(prog, similiar.get(prog) + 1);
+             }
           }
-
-        }
-      }
-      //
-      // Yes, I have to think more about this....
-      // Right now a program is printed if it has
-      // better fitness value than the former best solution.
-
-      // if (gen % 25 == 0) {
-      //    myOutputSolution(fittest, gen);
-      // }
+       }
+      
       if (bestFit < 0.0d || fitness < bestFit) {
         bestGen = gen;
         mostrarDatos(thisFittest, gen);
         bestFit = fitness;
         bestProgram = program;
         fittest = thisFittest;
-        if (verSim) {
+
+        //Limpiar la estructura para guardar las siguientes soluciones
+        if (verSim)
           similiar.clear();
-        }
-        // Ensure that the best solution is in the population.
-        // gp.addFittestProgram(thisFittest);
-      }
-      else {
-        /*
-          if (gen % 25 == 0 && gen != numEvolutions) {
-         System.out.println("Generation " + gen + " (This is a keep alive message.)");
-            // myOutputSolution(fittest, gen);
-                         }
-         */
-      }
+        
+      }      
     }
-
-    // Print the best solution so far to the console.
-    // ----------------------------------------------
-    // gp.outputSolution(gp.getAllTimeBest());
-
-    //ventana.RenovarText("\n"+"\nAll time best (from generation " + bestGen + ")");///
-    //System.out.println("\nAll time best (from generation " + bestGen + ")");
     mostrarDatos(fittest, generaciones);
-    //ventana.RenovarText("\n"+"applicationData: " + fittest.getApplicationData());///
-    //System.out.println("applicationData: " + fittest.getApplicationData());
-    // Create a graphical tree of the best solution's program and write it to
-    // a PNG file.
-    // ----------------------------------------------------------------------
-    // problem.showTree(gp.getAllTimeBest(), "mathproblem_best.png");
-
-    tFin = System.currentTimeMillis();    
+    
+    //Pedir el tiempo para restarlo con el que se pidio al principio y asi saber
+    //Cuanto se demora el algo
+    tFin = System.currentTimeMillis();
     ventana.RenovarText("\n"+"\nEl tiempo de ejecucion fue: " + (tFin - tInicio) + "ms");
     
   }
 
-  //Resultados del algoritmo
+  //Resultados de el algoritmo para mostrar
   public static void mostrarDatos(IGPProgram mejor, int gen) throws ScriptException {
      
     if (mejor == null) {
