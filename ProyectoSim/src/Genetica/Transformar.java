@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Genetica;
 
 import Interfaz.Principal;
 
-/**
- *
- * @author Diego
- */
 public class Transformar {
 
     public Transformar(){

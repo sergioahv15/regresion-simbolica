@@ -3,8 +3,6 @@ package Interfaz;
 
 import Genetica.EvaluarFit;
 import Genetica.SymbolicRegression;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jgap.gp.GPProblem;
 import org.jgap.gp.impl.DeltaGPFitnessEvaluator;
 import org.jgap.gp.impl.GPConfiguration;
@@ -37,8 +35,8 @@ public class Hilo extends Thread{
             sr.ventana=f;
             //f.RenovarText("Presentation: " + sr.presentation);
             //System.out.println("Presentation: " + sr.presentation);
-            if (es.outputVariable == null)
-              es.outputVariable = es.varEntrada;
+            if (es.variableSal == null)
+              es.variableSal = es.varEntrada;
            
             if (sr.variableNames == null) {
               sr.variableNames = new String[es.varEntrada + 1];

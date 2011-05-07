@@ -119,9 +119,6 @@ public class SymbolicRegression extends GPProblem {
 
   public static String presentation = "";
 
-  // Using ADF
-  public static int adfArity = 0;
-
   public static String adfType = "double";
 
   public static boolean useADF = false;
@@ -211,7 +208,7 @@ public class SymbolicRegression extends GPProblem {
     int variableIndex = 0;
     for (int i = 0; i < es.varEntrada + 1; i++) {
       String variableName = variableNames[i];
-      if (i != es.outputVariable) {
+      if (i != es.variableSal) {
         if (variableNames != null && variableNames.length > 0) {
           variableName = variableNames[i];
         }
@@ -297,309 +294,41 @@ public class SymbolicRegression extends GPProblem {
     ArrayList<CommandGene> commandsList = new ArrayList<CommandGene> ();
     int len = functions.length;
     try {
-      for (int i = 0; i < len; i++) {
-        //
-        // Note: Not all functions are applicable here...
-        //
-        if ("Multiply".equals(functions[i])) {
+      for (int i = 0; i < len; i++) {        
+        if ("Multiply".equals(functions[i])) 
           commandsList.add(new Multiply(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Multiply(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Multiply3".equals(functions[i])) {
-          commandsList.add(new Multiply3(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Multiply3(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Add".equals(functions[i])) {
-          commandsList.add(new Add(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Add(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Divide".equals(functions[i])) {
-          commandsList.add(new Divide(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Divide(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Add3".equals(functions[i])) {
-          commandsList.add(new Add3(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Add3(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Add4".equals(functions[i])) {
-          commandsList.add(new Add4(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Add4(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Subtract".equals(functions[i])) {
-          commandsList.add(new Subtract(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Subtract(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Sine".equals(functions[i])) {
-          commandsList.add(new Sine(conf, CommandGene.DoubleClass));
-        }
-        else if ("ArcSine".equals(functions[i])) {
-          commandsList.add(new ArcSine(conf, CommandGene.DoubleClass));
-        }
-        else if ("Tangent".equals(functions[i])) {
-          commandsList.add(new Tangent(conf, CommandGene.DoubleClass));
-        }
-        else if ("ArcTangent".equals(functions[i])) {
-          commandsList.add(new ArcTangent(conf, CommandGene.DoubleClass));
-        }
-        else if ("Cosine".equals(functions[i])) {
-          commandsList.add(new Cosine(conf, CommandGene.DoubleClass));
-        }
-        else if ("ArcCosine".equals(functions[i])) {
-          commandsList.add(new ArcCosine(conf, CommandGene.DoubleClass));
-        }
-        else if ("Exp".equals(functions[i])) {
-          commandsList.add(new Exp(conf, CommandGene.DoubleClass));
-        }
-        else if ("Log".equals(functions[i])) {
-          commandsList.add(new Log(conf, CommandGene.DoubleClass));
-        }
-        else if ("Abs".equals(functions[i])) {
-          commandsList.add(new Abs(conf, CommandGene.DoubleClass));
-        }
-        else if ("Pow".equals(functions[i])) {
-          commandsList.add(new Pow(conf, CommandGene.DoubleClass));
-        }
-        else if ("Round".equals(functions[i])) {
-          commandsList.add(new Round(conf, CommandGene.DoubleClass));
-        }
-        else if ("Ceil".equals(functions[i])) {
-          commandsList.add(new Ceil(conf, CommandGene.DoubleClass));
-        }
-        else if ("Floor".equals(functions[i])) {
-          commandsList.add(new Floor(conf, CommandGene.DoubleClass));
-        }
-        else if ("Modulo".equals(functions[i])) {
-          commandsList.add(new Modulo(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Modulo(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("ModuloD".equals(functions[i])) {
-          commandsList.add(new ModuloD(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new ModuloD(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Max".equals(functions[i])) {
-          commandsList.add(new Max(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Max(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Min".equals(functions[i])) {
-          commandsList.add(new Min(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Min(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Sqrt".equals(functions[i])) {
-          // Note: This uses my Sqrt.java file
-          commandsList.add(new Sqrt(conf, CommandGene.DoubleClass));
-        }
-        else if ("Logistic".equals(functions[i])) {
-          // Note: This uses my Logistic.java file
-          commandsList.add(new Logistic(conf, CommandGene.DoubleClass));
-        }
-        else if ("Gaussian".equals(functions[i])) {
-          // Note: This uses my Gaussian.java file
-          commandsList.add(new Gaussian(conf, CommandGene.DoubleClass));
-        }
-        else if ("Sigmoid".equals(functions[i])) {
-          // Note: This uses my Sigmoid.java file
-          commandsList.add(new Sigmoid(conf, CommandGene.DoubleClass));
-        }
-        else if ("Gamma".equals(functions[i])) {
-          // Note: This uses my Gamma.java file
-          commandsList.add(new Gamma(conf, CommandGene.DoubleClass));
-        }
-        else if ("Step".equals(functions[i])) {
-          // Note: This uses my Step.java file
-          commandsList.add(new Step(conf, CommandGene.DoubleClass));
-        }
-        else if ("Sign".equals(functions[i])) {
-          // Note: This uses my Sign.java file
-          commandsList.add(new Sign(conf, CommandGene.DoubleClass));
-        }
-        else if ("Hill".equals(functions[i])) {
-          // Note: This uses my Hill.java file
-          commandsList.add(new Hill(conf, CommandGene.DoubleClass));
-        }
-        else if ("LesserThan".equals(functions[i])) {
-          // experimental
-          commandsList.add(new LesserThan(conf, CommandGene.BooleanClass));
-        }
-        else if ("GreaterThan".equals(functions[i])) {
-          // experimental
-          commandsList.add(new GreaterThan(conf, CommandGene.BooleanClass));
-        }
-        else if ("If".equals(functions[i])) {
-          // Note: This is just If on DoubleClass, not a proper Boolean
-          commandsList.add(new If(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new If(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("IfElse".equals(functions[i])) {
-          commandsList.add(new IfElse(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new IfElse(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("IfDyn".equals(functions[i])) {
-          // Well, this don't work as expected...
-          // System.out.println("IfDyn is not supported yet");
-          commandsList.add(new IfDyn(conf, CommandGene.BooleanClass, 1, 1, 5));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new IfDyn(conf, CommandGene.DoubleClass, 1, 1, 5));
-          }
-        }
-        else if ("Loop".equals(functions[i])) { // experimental
-          commandsList.add(new Loop(conf, CommandGene.DoubleClass, 3));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Loop(conf, CommandGene.BooleanClass, 3));
-          }
-        }
-        else if ("Equals".equals(functions[i])) {
-          // experimental
-          // commandsList.add(new Equals(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Equals(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("ForXLoop".equals(functions[i])) {
-          // experimental
-          commandsList.add(new ForXLoop(conf, CommandGene.IntegerClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new ForXLoop(conf, CommandGene.BooleanClass));
-          }
-          else if (useADF && "integer".equals(adfType)) {
-            commandsList.add(new ForXLoop(conf, CommandGene.IntegerClass));
-          }
-        }
-        else if ("ForLoop".equals(functions[i])) {
-          // experimental
-          commandsList.add(new ForLoop(conf, CommandGene.IntegerClass, 10));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new ForLoop(conf, CommandGene.BooleanClass, 10));
-          }
-          else if (useADF && "integer".equals(adfType)) {
-            commandsList.add(new ForLoop(conf, CommandGene.IntegerClass, 10));
-          }
-        }
-        else if ("Increment".equals(functions[i])) {
-          commandsList.add(new Increment(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Increment(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Argument".equals(functions[i])) {
-          // experimental
-          /*
-           commandsList.add(new Argument(conf, 1, CommandGene.DoubleClass));
-                               if ("boolean".equals(adfType)) {
-           commandsList.add(new Argument(conf, 1, CommandGene.BooleanClass));
-                               }
-           */
 
-        }
-        else if ("StoreTerminal".equals(functions[i])) {
-          // experimental
-          commandsList.add(new StoreTerminal(conf, "dmem0",
-              CommandGene.DoubleClass));
-          commandsList.add(new StoreTerminal(conf, "dmem1",
-              CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new StoreTerminal(conf, "bmem0",
-                CommandGene.DoubleClass));
-            commandsList.add(new StoreTerminal(conf, "bmem1",
-                CommandGene.DoubleClass));
-          }
-        }
-        else if ("Pop".equals(functions[i])) {
-          // experimental
-          // commandsList.add(new Pop(conf, CommandGene.DoubleClass));
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Pop(conf, CommandGene.BooleanClass));
-          }
-        }
-        else if ("Push".equals(functions[i])) {
-          // experimental
-          commandsList.add(new Push(conf, CommandGene.DoubleClass));
-        }
-        else if ("And".equals(functions[i])) {
-          // experimental
-          commandsList.add(new And(conf));
-        }
-        else if ("Or".equals(functions[i])) {
-          // experimental
-          commandsList.add(new Or(conf));
-        }
-        else if ("Xor".equals(functions[i])) {
-          // experimental
-          commandsList.add(new Xor(conf));
-        }
-        else if ("Not".equals(functions[i])) {
-          // experimental
-          commandsList.add(new Not(conf));
-        }
-        else if ("AndD".equals(functions[i])) {
-          // experimental
-          commandsList.add(new AndD(conf));
-        }
-        else if ("OrD".equals(functions[i])) {
-          // experimental
-          commandsList.add(new OrD(conf));
-        }
-        else if ("XorD".equals(functions[i])) {
-          // experimental
-          commandsList.add(new XorD(conf));
-        }
-        else if ("NotD".equals(functions[i])) {
-          // experimental
-          commandsList.add(new NotD(conf));
-        }
-        else if ("SubProgram".equals(functions[i])) {
-          // experimental
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new SubProgram(conf,
-                new Class[] {CommandGene.BooleanClass, CommandGene.BooleanClass}));
-            commandsList.add(new SubProgram(conf,
-                new Class[] {CommandGene.BooleanClass, CommandGene.BooleanClass,
-                CommandGene.BooleanClass}));
-          }
-          commandsList.add(new SubProgram(conf,
-              new Class[] {CommandGene.DoubleClass, CommandGene.DoubleClass}));
-          commandsList.add(new SubProgram(conf,
-              new Class[] {CommandGene.DoubleClass, CommandGene.DoubleClass,
-              CommandGene.DoubleClass}));
-        }
-        else if ("Tupel".equals(functions[i])) {
-          // experimental
-          if (useADF && "boolean".equals(adfType)) {
-            commandsList.add(new Tupel(conf,
-                                       new Class[] {CommandGene.BooleanClass,
-                                       CommandGene.BooleanClass}));
-          }
-        }
-        else {
-          System.out.println("Unkown function: " + functions[i]);
-          System.exit(1);
-        }
+        else if ("Add".equals(functions[i]))
+          commandsList.add(new Add(conf, CommandGene.DoubleClass));          
+       
+        else if ("Divide".equals(functions[i])) 
+          commandsList.add(new Divide(conf, CommandGene.DoubleClass));
+        
+        else if ("Subtract".equals(functions[i]))
+          commandsList.add(new Subtract(conf, CommandGene.DoubleClass));          
+       
+        else if ("Sine".equals(functions[i])) 
+          commandsList.add(new Sine(conf, CommandGene.DoubleClass)); 
+        
+        else if ("Cosine".equals(functions[i])) 
+          commandsList.add(new Cosine(conf, CommandGene.DoubleClass));       
+       
+        else if ("Exp".equals(functions[i])) 
+          commandsList.add(new Exp(conf, CommandGene.DoubleClass));
+        
+        else if ("Log".equals(functions[i])) 
+          commandsList.add(new Log(conf, CommandGene.DoubleClass));
+        
+        else if ("Abs".equals(functions[i])) 
+          commandsList.add(new Abs(conf, CommandGene.DoubleClass));
+        
+        else if ("Pow".equals(functions[i])) 
+          commandsList.add(new Pow(conf, CommandGene.DoubleClass));       
+        
+        else if ("Sqrt".equals(functions[i])) 
+          commandsList.add(new Sqrt(conf, CommandGene.DoubleClass));   
       }
+
       commandsList.add(new Terminal(conf, CommandGene.DoubleClass, lowerRange,
                                     upperRange, terminalWholeNumbers));      
      
@@ -617,11 +346,6 @@ public class SymbolicRegression extends GPProblem {
     return commands;
   }
 
-  /**
-   * Starts the example.
-   *
-   * @author Hakan Kjellerstrand
-   */
   public static void main(String[] args, int caso, Principal frame, GPProblem problem) throws Exception {
 
     // Create the genotype of the problem, i.e., define the GP commands and

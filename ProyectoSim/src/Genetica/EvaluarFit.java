@@ -9,15 +9,122 @@ import org.jgap.gp.impl.ProgramChromosome;
 import org.jgap.gp.terminal.Variable;
 
 public class EvaluarFit 
-{
-   // index of the output variable
-  public static Integer outputVariable; // default last
+{  
+  //Definir el indice donde se encuentra la variable de salida por omision es la ultima
+  public static Integer variableSal;
 
-   // If we have found a perfect solution.
-  public static boolean foundPerfect = false;
+  //Si encuentra una solucion igual o mejor al error permitido para
+  public static boolean maxMejora = false;
+ 
+  //Numero de cols en la matriz no transpuesta
   private int cols;
 
-    public void setCols(int cols) {
+   //Multiplicador para agrandar y comparar
+   public static double mulErr = -1.0d;
+
+   //Si se encontro una solucion terminar el genetico
+   public static boolean saltarT = false;
+
+   //Relacion entre resultados si la diferencia es la definida los debe mostrar
+   public static Double limMostrar = 0.0000;
+
+   //Numero de columnas
+   public static int numCol;
+
+   //Numero de variables de entrada
+   public static int varEntrada;
+
+   // Este hash lleva la informacion de todas las posibles soluciones que cumplen
+   // con los requisitos del minimo error
+   private static HashMap<String, Integer> listSoluciones = new HashMap<String,
+      Integer> ();
+
+   //Matriz que contiene los datos
+   public static Double[][] datos;
+
+   //Guardar los resultados
+   public static Double[] results;
+
+   // Se definen las variables que vamos a usar es posible tener n variables
+   // independientes y una dependiente
+   public static Variable[] variables;
+
+
+   //Clase para evaluar el resultado del algoritmo
+   public static class EvaluarFitness extends GPFitnessFunction
+   {
+      //Metodos de la superclase
+       protected double evaluate(final IGPProgram a_subject) {
+         return calcFit(a_subject);
+      }
+
+    public double calcFit(final IGPProgram ind) {
+      double error = 0.0;
+      Object[] entra = new Object[0];
+      
+      //Tener los datos en el arreglo de las variables
+      for (int j = 0; j < numCol; j++)
+      {
+         int variableIndex = 0;
+         for (int i = 0; i < varEntrada + 1; i++) {
+             if (i != variableSal) {
+                variables[variableIndex].set(datos[i][j]);
+                variableIndex++;
+             }
+         }
+
+        try {
+          double result = ind.execute_double(0, entra);
+          results[j] = result;
+
+          //el error se calcula sobre la diferencia entre los daros de entrada
+          //y los datos que produce el algortimo genetico si el error es 0 son
+          //los mismos datos y por lo tanto la misma funicon
+          error += Math.abs(result - datos[variableSal][j]); 
+          
+          if (Double.isInfinite(error)) {
+            return Double.MAX_VALUE;
+          }
+        } catch (ArithmeticException ex) {
+          //Si existe algun error como un desbordamiento o divisiones invalidad
+          //se entra a esta exceptio
+          System.out.println("Hubo un error en una operacion aritmetica");
+          throw ex;
+        }
+      }
+      
+      //Si el algoritmo encontro un match perfecto es decir una relacion perfecta
+      //Entre los datos que entraron y los datos generados el programa debe de mostrar
+      //Las soluciones que cumplan con este requisito y enviar un salto para terminar el
+      //Programa
+      if (error <= limMostrar && saltarT)
+      {
+        if (!maxMejora)
+          maxMejora = true;
+
+        ProgramChromosome chrom = ind.getChromosome(0);
+        String program = chrom.toStringNorm(0);
+        if (!listSoluciones.containsKey(program))          
+          listSoluciones.put(program, 1);        
+        else         
+          listSoluciones.put(program, listSoluciones.get(program) + 1);
+        
+        error = 0.1d;
+      }
+
+      //Para evitar errores de precision ampliamos el error multiplicando por una
+      //Constante pequeña
+      if (mulErr > 0.0d)
+        return error * mulErr;
+      
+      else 
+        return error;
+     
+    }
+  }
+
+   //Metodos setters y getters de las variables de la clase
+   public void setCols(int cols) {
         this.cols = cols;
     }
 
@@ -26,11 +133,11 @@ public class EvaluarFit
     }
 
     public static void setBumpPerfect(boolean bumpPerfect) {
-        EvaluarFit.bumpPerfect = bumpPerfect;
+        EvaluarFit.saltarT = bumpPerfect;
     }
 
     public static void setBumpValue(Double bumpValue) {
-        EvaluarFit.bumpValue = bumpValue;
+        EvaluarFit.limMostrar = bumpValue;
     }
 
     public static void setData(Double[][] data) {
@@ -38,11 +145,11 @@ public class EvaluarFit
     }
 
     public static void setFoundPerfect(boolean foundPerfect) {
-        EvaluarFit.foundPerfect = foundPerfect;
+        EvaluarFit.maxMejora = foundPerfect;
     }
 
     public static void setFoundSolutions(HashMap<String, Integer> foundSolutions) {
-        EvaluarFit.foundSolutions = foundSolutions;
+        EvaluarFit.listSoluciones = foundSolutions;
     }
 
     public static void setNumInputVariables(int numInputVariables) {
@@ -54,7 +161,7 @@ public class EvaluarFit
     }
 
     public static void setOutputVariable(Integer outputVariable) {
-        EvaluarFit.outputVariable = outputVariable;
+        EvaluarFit.variableSal = outputVariable;
     }
 
     public static void setResults(Double[] results) {
@@ -62,7 +169,7 @@ public class EvaluarFit
     }
 
     public static void setScaleError(double scaleError) {
-        EvaluarFit.scaleError = scaleError;
+        EvaluarFit.mulErr = scaleError;
     }
 
     public static void setVariables(Variable[] variables) {
@@ -70,11 +177,11 @@ public class EvaluarFit
     }
 
     public static boolean isBumpPerfect() {
-        return bumpPerfect;
+        return saltarT;
     }
 
     public static Double getBumpValue() {
-        return bumpValue;
+        return limMostrar;
     }
 
     public static Double[][] getData() {
@@ -82,11 +189,11 @@ public class EvaluarFit
     }
 
     public static boolean isFoundPerfect() {
-        return foundPerfect;
+        return maxMejora;
     }
 
     public static HashMap<String, Integer> getFoundSolutions() {
-        return foundSolutions;
+        return listSoluciones;
     }
 
     public static int getNumInputVariables() {
@@ -98,7 +205,7 @@ public class EvaluarFit
     }
 
     public static Integer getOutputVariable() {
-        return outputVariable;
+        return variableSal;
     }
 
     public static Double[] getResults() {
@@ -106,128 +213,14 @@ public class EvaluarFit
     }
 
     public static double getScaleError() {
-        return scaleError;
+        return mulErr;
     }
 
     public static Variable[] getVariables() {
         return variables;
     }
-
-   // if the values are too small we may want to scale
-   // the error
-   public static double scaleError = -1.0d;
-
-    // "bumping" is when we found a "perfect solution" and
-   // want to see more "perfect solutions"
-   public static boolean bumpPerfect = false;
-
-   // the limit for which we should show all (different) solutions
-   public static Double bumpValue = 0.0000;
-
-   public static int numCol;
-   public static int varEntrada;
-
-   // checks for already shown solution when bumping
-   private static HashMap<String, Integer> foundSolutions = new HashMap<String,
-      Integer> ();
-
-   // the data (as Double)
-   // Note: the last row is the output variable per default
-   public static Double[][] datos;
-
-   //Cadena para imprimir en la interface
-   public static Double[] results;
-
-   // the variables to use (of size numInputVariables)
-   public static Variable[] variables;
-      
-   public static class EvaluarFitness extends GPFitnessFunction
-   {
-   protected double evaluate(final IGPProgram a_subject) {
-      return calcFit(a_subject);
-    }
-
-    public double calcFit(final IGPProgram ind) {
-      double error = 0.0f;
-      Object[] noargs = new Object[0];
-      // Evaluate function for the input numbers
-      // --------------------------------------------
-      // double[] results  =  new double[numRows];
-      for (int j = 0; j < numCol; j++) {
-        // Provide the variable X with the input number.
-        // See method create(), declaration of "nodeSets" for where X is
-        // defined.
-        // -------------------------------------------------------------
-
-        // set all the input variables
-        int variableIndex = 0;
-        for (int i = 0; i < varEntrada + 1; i++) {
-          if (i != outputVariable) {
-            variables[variableIndex].set(datos[i][j]);
-            variableIndex++;
-          }
-        }
-        try {
-          double result = ind.execute_double(0, noargs);
-          results[j] = result;
-
-          // Sum up the error between actual and expected result to get a defect
-          // rate.
-          // -------------------------------------------------------------------
-
-          // hakank: TODO: test with different metrics...
-          error += Math.abs(result - datos[outputVariable][j]); // original
-          // error += Math.pow(Math.abs(result - data[outputVariable][j]),2);
-
-          // If the error is too high, stop evaluation and return worst error
-          // possible.
-          // ----------------------------------------------------------------
-          if (Double.isInfinite(error)) {
-            return Double.MAX_VALUE;
-          }
-        } catch (ArithmeticException ex) {
-          // This should not happen, some illegal operation was executed.
-          // ------------------------------------------------------------
-          System.out.println(ind);
-          throw ex;
-        }
-      }
-      /*
-        // experimental
-        ProgramChromosome chrom = ind.getChromosome(0);
-        String program = chrom.toStringNorm(0);
-        double length = program.length();
-       */
-
-      // If the fitness is very close to 0.0 then we maybe bump it
-      // up to see alternative solutions.
-      // -------------------------------------------------------
-      if (error <= bumpValue && bumpPerfect) {
-        if (!foundPerfect)
-          foundPerfect = true;
-
-        ProgramChromosome chrom = ind.getChromosome(0);
-        String program = chrom.toStringNorm(0);
-        if (!foundSolutions.containsKey(program)) {
-          System.out.println("PROGRAM:" + program + " error: " + error);
-          foundSolutions.put(program, 1);
-        }
-        else {
-          // TODO: We may want to show the number of hits
-          // after the run...
-          foundSolutions.put(program, foundSolutions.get(program) + 1);
-        }
-        error = 0.1d;
-      }
-
-      if (scaleError > 0.0d) {
-        return error * scaleError;
-      }
-      else {
-        return error;
-      }
-    }
-  }
+   
+  
 
 }
 
