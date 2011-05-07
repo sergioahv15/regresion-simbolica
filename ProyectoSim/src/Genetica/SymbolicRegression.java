@@ -1,15 +1,16 @@
+//Clase principal del algoritmo, armamos el arbol en esta clase y lo enviamos
+//a evaluar para ver si el arbol generado sirve, en esta clase se definen todas
+//las operaciones de los algoritmos geneticos
+
 package Genetica;
 
 import Interfaz.Principal;
-import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import org.jfree.data.xy.XYSeries;
-
 
 import org.jgap.*;
 import org.jgap.gp.*;
@@ -18,58 +19,15 @@ import org.jgap.gp.impl.*;
 import org.jgap.gp.terminal.*;
 import org.jgap.util.*;
 
-/*
- *
- * Symbolic Regression in JGAP.
- *
- * This program is based on the JGAP example MathProblem.java with
- * some generality.
- *
- * TODO:
- *  - option for ignoring specific variables
- *  - option for stopping:
- *     - running forever
- *     - after a specific time,
- *     - when a specific fitness value is reached
- *  - calculate the number of data rows automatically (i.e. skip num_row)
- *  - show similiar solutions (with the same fitness as the best)
- *  - check if there are any more parameters in GPConfiguration to handle.
- *  - accept nominal values in the data section; then converted to
- *    numeric values.
- *  - add fitness metrics.
- *  - punish longer solutions
- *  - support for different "main" return classes, i.e. not just DoubleClass
- *  - correlation coefficient, and other statistical measures, e.g.
- *    R-squared, mean squared error, mean absolut error, minimum error,
- *    maximum error
- *  - more/better error checks
- *  - more building blocks, a la Eureqa http://ccsl.mae.cornell.edu/eureqa_ops
- *  - support for derivata (a la Eureqa)? This may be hard...
- *  - integrate with Weka?
- *  - simplify the best solution with a CAS?
- *
- * This program was written by Hakan Kjellerstrand (hakank@bonetmail.com)
- * Also, see my JGAP page http://www.hakank.org/jgap/
- *
- * @since 3.5
- */
 public class SymbolicRegression extends GPProblem {
 
   public static int cols;
-
-    public void setCols(int cols) {
-        this.cols = cols;
-    }
-
-    public int getCols() {
-        return cols;
-    }
   public static Principal ventana;
   private EvaluarFit es = new EvaluarFit();
 
   // variable name
   public static String[] variableNames;
-  public static int[] ignoreVariables; // TODO
+ 
   // constants
   public static ArrayList<Double> constants = new ArrayList<Double> ();
 
@@ -124,17 +82,8 @@ public class SymbolicRegression extends GPProblem {
   public static boolean useADF = false;
 
   // list of functions (as strings)
-  public static String[] functions = {"Multiply", "Divide", "Add", "Subtract"};
-
-  // list of functions for ADF
-  public static String[] adfFunctions = {"Multiply3", "Divide", "Add3",
-      "Subtract"};
-
-  // Should we punish length of solutions?
-  // Note: Very simplistic version.
-  // public static boolean punishLength = false;
-
-  // timing
+  public static String[] functions = {"Multiply", "Divide", "Add", "Subtract"};  
+  
   public static long startTime;
 
   public static long endTime;
@@ -543,4 +492,12 @@ public class SymbolicRegression extends GPProblem {
       depths += a_best.getChromosome(i).getDepth(0);
     }    
   }
+
+  public void setCols(int cols) {
+        this.cols = cols;
+    }
+
+    public int getCols() {
+        return cols;
+    }
 }

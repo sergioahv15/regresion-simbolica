@@ -1,39 +1,14 @@
+//Clase qeu implementa la funcion de raiz cuadrada la cual se usa para
+//Generar el arbol de solucion
 package Genetica;
-
-/*
- * This file is part of JGAP.
- *
- * JGAP offers a dual license model containing the LGPL as well as the MPL.
- *
- * For licensing information please see the file license.txt included with JGAP
- * or have a look at the top of class org.jgap.Chromosome which representatively
- * includes the JGAP license policy applicable for any file delivered with JGAP.
- */
-
-
-/*
-  hakank: This is my take of the Sqrt function.
-
-  I just copied the org.jgap.gp.function.Log and changed
-  accordingly...
-
- */
 
 import org.jgap.*;
 import org.jgap.gp.*;
 import org.jgap.gp.impl.*;
 import org.jgap.util.*;
 
-/**
- * Returns the natural logarithm (base e) of a double value.
- *
- * @author Klaus Meffert
- * @since 3.5
- */
-public class Sqrt
-    extends MathCommand implements ICloneable {
-  /** String containing the CVS revision. Read out via reflection!*/
-  private final static String CVS_REVISION = "$Revision: 1.1 $";
+
+public class Sqrt extends MathCommand implements ICloneable {
 
   public Sqrt(final GPConfiguration a_conf, Class a_returnType)
       throws InvalidConfigurationException {
@@ -41,14 +16,9 @@ public class Sqrt
   }
 
   public String toString() {
-    return "sqrt &1";
+    return "sqrt";
   }
-
-  /**
-   * @return textual name of this command
-   *
-   * @author Hakan Kjellerstrand (based on Klaus Meffert's Log file)
-   */
+ 
   public String getName() {
     return "Sqrt";
   }
@@ -70,13 +40,8 @@ public class Sqrt
   protected interface Compatible {
     public Object execute_sqrt();
   }
-  /**
-   * Clones the object. Simple and straight forward implementation here.
-   *
-   * @return cloned instance of this object
-   *
-   * @author Hakan Kjellerstrand (based on Klaus Meffert's Log file)
-   */
+  
+  //Se clona el objeto para no dejarlo amarrado a una sola funcion
   public Object clone() {
     try {
       Sqrt result = new Sqrt(getGPConfiguration(), getReturnType());
