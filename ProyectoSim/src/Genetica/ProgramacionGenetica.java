@@ -68,32 +68,34 @@ public class ProgramacionGenetica extends GPProblem {
   //Si existen varias soluciones mostrar todas
   public static boolean verSim = false;
 
+  //Tenemos constructores con polimorfismo este constructor no recibe ni realiza
+  //Ninguna accion
   public ProgramacionGenetica(){
   }
 
-  public ProgramacionGenetica(GPConfiguration a_conf)
+  //Este constructor verifica que la configuracion que se le ha dado al algoritmo
+  //sea correcta
+  public ProgramacionGenetica(GPConfiguration config)
       throws InvalidConfigurationException {
-    super(a_conf);
+      super(config);
   }
 
  //metodo heredado de la GPProblem se utiliza para configurar los parametros
  //del genetico
  public GPGenotype create() throws InvalidConfigurationException {
-    GPConfiguration conf = getGPConfiguration();   
-    Class[] types;
-    Class[][] argTypes;   
-    
-    types = new Class[] {CommandGene.DoubleClass};
-    argTypes = new Class[][] { {} };
+    Class[] clases;
+    Class[][] clasesP;
+    GPConfiguration config = getGPConfiguration();
+
+    //Variables para inicializar el genotipo
+    clases = new Class[] {CommandGene.DoubleClass};
+    clasesP = new Class[][] {{}};
    
-    // Next, we define the set of available GP commands and terminals to use.
-    // Please see package org.jgap.gp.function and org.jgap.gp.terminal
-    // You can easily add commands and terminals of your own.
-    // ----------------------------------------------------------------------
-    CommandGene[] commands = makeCommands(conf, functions, comIntervalo,
+    //
+    CommandGene[] comandos = makeCommands(config, functions, comIntervalo,
         finIntervalo, "plain");
     // Create the node sets
-    int command_len = commands.length;
+    int command_len = comandos.length;
     CommandGene[][] nodeSets = new CommandGene[2][es.varEntrada +
         command_len];
     // the variables:
@@ -109,52 +111,49 @@ public class ProgramacionGenetica extends GPProblem {
         if (nomVars != null && nomVars.length > 0) {
           variableName = nomVars[i];
         }
-        es.variables[variableIndex] = Variable.create(conf, variableName,
+        es.variables[variableIndex] = Variable.create(config, variableName,
             CommandGene.DoubleClass);
-        es.variables[variableIndex] = Variable.create(conf, variableName,
+        es.variables[variableIndex] = Variable.create(config, variableName,
             CommandGene.DoubleClass);
         nodeSets[0][variableIndex] = es.variables[variableIndex];
-        ventana.RenovarText("\n"+"Variables de Entrada: " + es.variables[variableIndex]);///
-        System.out.println("input variable: " + es.variables[variableIndex]);
+        ventana.RenovarText("\n"+"Variables de Entrada: " + es.variables[variableIndex]);        
         variableIndex++;
       }
     }
-    
 
      //Este ciclo permite mostrar al usuario que funciones se estan usando
      //Para encontrar la solucion.
      ventana.RenovarText("\n"+"Operaciones definidas: ");
       for (int i = 0; i < command_len; i++) {
-          if(commands[i].toString().contains("+"))
+          if(comandos[i].toString().contains("+"))
               ventana.RenovarText("+, ");
-          if(commands[i].toString().contains("-")  && !commands[i].toString().contains("&"))
+          if(comandos[i].toString().contains("-")  && !comandos[i].toString().contains("&"))
               ventana.RenovarText("C, ");
-          if(commands[i].toString().contains("-")  && commands[i].toString().contains("&"))
+          if(comandos[i].toString().contains("-")  && comandos[i].toString().contains("&"))
               ventana.RenovarText("-, ");
-          if(commands[i].toString().contains("*"))
+          if(comandos[i].toString().contains("*"))
               ventana.RenovarText("*, ");
-          if(commands[i].toString().contains("/"))
+          if(comandos[i].toString().contains("/"))
               ventana.RenovarText("/, ");
-          if(commands[i].toString().contains("sqrt"))
+          if(comandos[i].toString().contains("sqrt"))
               ventana.RenovarText("Raiz2, ");
-          if(commands[i].toString().contains("^"))
+          if(comandos[i].toString().contains("^"))
               ventana.RenovarText("^, ");
-          if(commands[i].toString().contains("log"))
+          if(comandos[i].toString().contains("log"))
               ventana.RenovarText("Ln, ");
-          if(commands[i].toString().contains("sine"))
+          if(comandos[i].toString().contains("sine"))
               ventana.RenovarText("Sin, ");
-          if(commands[i].toString().contains("cosine"))
+          if(comandos[i].toString().contains("cosine"))
               ventana.RenovarText("Cos, ");
-          if(commands[i].toString().contains("Exp"))
+          if(comandos[i].toString().contains("Exp"))
               ventana.RenovarText("Exp, ");
 
           //Colocar una operacion en el nodo actual del arbol
-          nodeSets[0][i + es.varEntrada] = commands[i];
-    }
+          nodeSets[0][i + es.varEntrada] = comandos[i];
+     }
    
     //Comenzando se genera una configuracion al azar para mejorar desde esta
-     return GPGenotype.randomInitialGenotype(conf, types, argTypes, nodeSets,
-        maxNodos, salida);
+     return GPGenotype.randomInitialGenotype(config, clases, clasesP, nodeSets, maxNodos, salida);
   }
   
   public static Double[][] transposeMatrix(Double[][] m) {

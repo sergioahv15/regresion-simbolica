@@ -480,3 +480,7 @@
 [06.05.2011 21:22:52,444] [Thread-4] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
 [06.05.2011 21:22:52,444] [Thread-4] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
 [06.05.2011 21:22:52,497] [Thread-4] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
+[06.05.2011 23:30:40,526] [Thread-3] INFO  org.jgap.gp.impl.GPGenotype  - Creating initial population
+[06.05.2011 23:30:40,531] [Thread-3] INFO  org.jgap.gp.impl.GPGenotype  - Mem free: 15.5 MB
+[06.05.2011 23:30:40,545] [Thread-3] INFO  org.jgap.gp.impl.GPPopulation  - Prototype program set
+[06.05.2011 23:30:40,605] [Thread-3] INFO  org.jgap.gp.impl.GPGenotype  - Mem free after creating population: 15.5 MB
