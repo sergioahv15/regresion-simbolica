@@ -2,6 +2,7 @@ package Genetica;
 
 import Interfaz.Principal;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -109,7 +110,7 @@ public class SymbolicRegression extends GPProblem {
   // lower/upper ranges for the Terminal
   public static double lowerRange = -10.0d;
 
-  public static double upperRange = -10.0d;
+  public static double upperRange = 10.0d;
 
   // Should the terminal be a wholenumber or not?
   public static boolean terminalWholeNumbers = true;
@@ -243,15 +244,18 @@ public class SymbolicRegression extends GPProblem {
       if(commands[i].toString().contains("/"))
           ventana.RenovarText("/, ");
       if(commands[i].toString().contains("sqrt"))
-          ventana.RenovarText("raiz, ");
+          ventana.RenovarText("Raiz2, ");
       if(commands[i].toString().contains("^"))
-          ventana.RenovarText("exp, ");
+          ventana.RenovarText("^, ");
       if(commands[i].toString().contains("log"))
-          ventana.RenovarText("log, ");
+          ventana.RenovarText("Ln, ");
       if(commands[i].toString().contains("sine"))
-          ventana.RenovarText("sin, ");
+          ventana.RenovarText("Sin, ");
       if(commands[i].toString().contains("cosine"))
-          ventana.RenovarText("cos, ");
+          ventana.RenovarText("Cos, ");
+      if(commands[i].toString().contains("Exp"))
+          ventana.RenovarText("Exp, ");
+
       nodeSets[0][i + es.varEntrada] = commands[i];
     }
 
@@ -784,28 +788,21 @@ public class SymbolicRegression extends GPProblem {
     ventana.series2 = new  XYSeries("XYGraph");
 
     for(int j=0;j<cols;j++){
-
-
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
-
-
         String cromo=a_best.toStringNorm(0);
         String cromocop="";
-
-            for(int i=0;i<cromo.length();i++){
-                if(cromo.charAt(i)!='X') cromocop+=cromo.charAt(i);
-                else cromocop+=ventana.datosx.get(j);
-            }
-
-        double x=ventana.datosx.get(j);
+        cromocop=new Transformar().devolver(" "+cromo, ventana, j);
+        while(new Transformar().verificar(cromocop)){
+            cromocop=new Transformar().devolver(cromocop, ventana, j);
+        }
+        double x=ventana.datos[0][j];
+        System.out.println(cromo);
+        System.out.println(cromocop);
         double y=(Double)engine.eval(cromocop);
         ventana.series2.add(x, y);
-
-        //System.out.println(bestValue+" "+x+" "+y);
     }
     ventana.RenovarImagen();
-
     /////
 
 
