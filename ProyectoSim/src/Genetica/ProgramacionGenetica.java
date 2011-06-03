@@ -25,6 +25,9 @@ import org.jgap.util.*;
  */
 public class ProgramacionGenetica extends GPProblem {
 
+  // Para almacenar la solucion final
+  static public String SolucionFinal;
+
   public static int cols;// numero de datos
   public static Principal ventana; //objeto que ayuda a mostrar datos en interfaz
   private EvaluarFit es = new EvaluarFit(); //Objeto que ayuda a evaluar las soluciones
@@ -107,6 +110,7 @@ public class ProgramacionGenetica extends GPProblem {
     //Se asignan al vector varialbes las varialbes de entrada
     es.variables = new Variable[es.varEntrada];
     
+    boolean ini=true;
     for (int i = 0; i < es.varEntrada + 1; i++) {
       String nomvar = nomVars[i];
       
@@ -119,37 +123,45 @@ public class ProgramacionGenetica extends GPProblem {
         es.variables[ind] = Variable.create(config, nomvar,CommandGene.DoubleClass);
         es.variables[ind] = Variable.create(config, nomvar,CommandGene.DoubleClass);
         nodos[0][ind] = es.variables[ind];
-        ventana.RenovarText("\n"+"Variables de Entrada: " + es.variables[ind]);
+        if(ventana.impVarEnt && ini){
+            ventana.RenovarText("Variables de Entrada: " + es.variables[ind]);
+            ini=false;
+        }
+        else if(ventana.impVarEnt)
+            ventana.RenovarText(", " + es.variables[ind]);
         ind++;
       }
     }
 
      //Este ciclo permite mostrar al usuario que funciones se estan usando
      //Para encontrar la solucion.
-     ventana.RenovarText("\n"+"Operaciones definidas: ");
+      if(ventana.impOpeDef)
+        ventana.RenovarText("\n"+"Operaciones definidas: ");
       for (int i = 0; i < comandos.length; i++) {
-          if(comandos[i].toString().contains("+"))
-              ventana.RenovarText("+, ");
-          if(comandos[i].toString().contains("-")  && !comandos[i].toString().contains("&"))
-              ventana.RenovarText("C, ");
-          if(comandos[i].toString().contains("-")  && comandos[i].toString().contains("&"))
-              ventana.RenovarText("-, ");
-          if(comandos[i].toString().contains("*"))
-              ventana.RenovarText("*, ");
-          if(comandos[i].toString().contains("/"))
-              ventana.RenovarText("/, ");
-          if(comandos[i].toString().contains("sqrt"))
-              ventana.RenovarText("Raiz2, ");
-          if(comandos[i].toString().contains("^"))
-              ventana.RenovarText("^, ");
-          if(comandos[i].toString().contains("log"))
-              ventana.RenovarText("Ln, ");
-          if(comandos[i].toString().contains("sine"))
-              ventana.RenovarText("Sin, ");
-          if(comandos[i].toString().contains("cosine"))
-              ventana.RenovarText("Cos, ");
-          if(comandos[i].toString().contains("Exp"))
-              ventana.RenovarText("Exp, ");
+          if(ventana.impOpeDef){
+              if(comandos[i].toString().contains("+"))
+                  ventana.RenovarText("+, ");
+              if(comandos[i].toString().contains("-")  && !comandos[i].toString().contains("&"))
+                  ventana.RenovarText("C, ");
+              if(comandos[i].toString().contains("-")  && comandos[i].toString().contains("&"))
+                  ventana.RenovarText("-, ");
+              if(comandos[i].toString().contains("*"))
+                  ventana.RenovarText("*, ");
+              if(comandos[i].toString().contains("/"))
+                  ventana.RenovarText("/, ");
+              if(comandos[i].toString().contains("sqrt"))
+                  ventana.RenovarText("Raiz2, ");
+              if(comandos[i].toString().contains("^"))
+                  ventana.RenovarText("^, ");
+              if(comandos[i].toString().contains("log"))
+                  ventana.RenovarText("Ln, ");
+              if(comandos[i].toString().contains("sine"))
+                  ventana.RenovarText("Sin, ");
+              if(comandos[i].toString().contains("cosine"))
+                  ventana.RenovarText("Cos, ");
+              if(comandos[i].toString().contains("Exp"))
+                  ventana.RenovarText("Exp, ");
+          }
 
           //Colocar una operacion en el nodo actual del arbol
           nodos[0][i + es.varEntrada] = comandos[i];
@@ -289,17 +301,31 @@ public class ProgramacionGenetica extends GPProblem {
 
         //Limpiar la estructura para guardar las siguientes soluciones
         if (verSim)
-          similiar.clear();        
-      }      
+          similiar.clear();
+
+        //Comprobamos si el fitness encontrado es menor o igual que la condicion de parada
+        if(fitness<=cParada)
+            break;
+      }
+
+      //actualizar barra de progreso
+      ventana.actualizarBarra(gen*100/generaciones);
+
     }
     mostrarDatos(test, generaciones);
     
     //Pedir el tiempo para restarlo con el que se pidio al principio y asi saber
     //Cuanto se demora el algo
     tFin = System.currentTimeMillis();
-    ventana.RenovarText("\n"+"\nEl tiempo de ejecucion fue: " + (tFin - tInicio) + "ms");
+    if(!ventana.impEvoPro){
+        ventana.RenovarText("\n"+"Mejor fitness encontrado: " + NumberKit.niceDecimalNumber(test.getFitnessValue(), 2));
+        ventana.RenovarText("\n"+"Mejor Solucion: " + test.toStringNorm(0));
+    }
+    ventana.RenovarText("\n\nLa Funcion Simplificada es: " + Simplificar.Simplificar(SolucionFinal));
+    if(ventana.impTimEje)
+        ventana.RenovarText("\n\nEl tiempo de ejecucion fue: " + (tFin - tInicio) + "ms");
     ventana.estadoBoton(true);
-    
+    ventana.guardarResultados();
   }
 
   //Resultados de el algoritmo para mostrar
@@ -316,7 +342,8 @@ public class ProgramacionGenetica extends GPProblem {
       return;
     }
     //Se muestra el mejor fitnness encontrado hasta el momento
-    ventana.RenovarText("\n"+"Mejor fitness encontrado: " + NumberKit.niceDecimalNumber(mejor.getFitnessValue(), 2));
+    if(ventana.impEvoPro)
+        ventana.RenovarText("\n"+"Mejor fitness encontrado: " + NumberKit.niceDecimalNumber(mejor.getFitnessValue(), 2));
     ventana.series2 = new  XYSeries("XYGraph");
 
     //Pintamos los datos de la funcion que tenemos actualmente esto ocurre
@@ -338,9 +365,12 @@ public class ProgramacionGenetica extends GPProblem {
             double y=(Double)engine.eval(cromocop);
             ventana.series2.add(x, y);
         }
-        ventana.RenovarImagen();
+        if(ventana.mosGrafic)
+            ventana.RenovarImagen();
     }
-    ventana.RenovarText("\n"+"Mejor Solucion: " + mejor.toStringNorm(0));
+    if(ventana.impEvoPro)
+        ventana.RenovarText("\n"+"Mejor Solucion: " + mejor.toStringNorm(0));
+    SolucionFinal=""+mejor.toStringNorm(0);
     
   }
 
