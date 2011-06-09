@@ -213,6 +213,8 @@ public class Principal extends javax.swing.JFrame {
         }
 
         String[] args={""};
+        if(mosGrafic && numeroVariables==1) jLabel5.setVisible(true);
+            else jLabel5.setVisible(false);
         new Hilo(SR,args,this,0).start();
     }
 
@@ -342,6 +344,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -363,7 +368,7 @@ public class Principal extends javax.swing.JFrame {
         jTextArea3.setColumns(20);
         jTextArea3.setEditable(false);
         jTextArea3.setRows(5);
-        jTextArea3.setText("\tINGRESO DE DATOS:\n\nPrimero debe ingresar el número(M) de variables independientes que desea.\n\nEn el Área de Texto debe ingresar M+1 número de columnas separadas por un espacio, las cuales representan los datos \ncorrespondientes a las M variables y una columna adicional para la variable de salida.\n\nDebe tener en cuenta que la última columna es el resultado de la función.\n\nEjemplo: Para la función Y=X^2 los datos de entrada correspondientes serian:\n\nNúmero Variables independientes: 1\nDatos:\n1 2\n2 4\n3 9\n4 16\n5 25\n\nImportante: Cuando termine de ingresar los datos por favor deje una línea en blanco al final.\n\nAdicionalmente usted puede seleccionar las funciones que desea utilizar para que el algoritmo genético evolucione.\n\n\tLECTURA DE ARCHIVOS:\n\nUsted también puede leer un archivo que tenga en su disco duro, simplemente debe dar clic en el botón \"Cargar Archivo\".\n\nLa primera línea del archivo debe ser \"NumeroVariables:#\" donde # es el número de variables independientes que usted \nva a ingresar.\nLas siguientes líneas son los datos tal cual como usted los ingresaría en el programa.\n\nEjemplo Archivo:\n_______________________________\nNumeroVariables:2\n1 2 3\n2 4 6\n3 8 11\n4 16 20\n5 32 37\n\n===============================\nRecuerde dejar una línea en blanco al final.\n\n\tCONFIGURACION\n\nSi usted tiene algún conocimiento sobre algoritmos genéticos, entonces puede utilizar la pestaña de configuración donde podrá \nmodificar los parámetros del algoritmo.");
+        jTextArea3.setText("\tINGRESO DE DATOS:\n\nPrimero debe ingresar el número(M) de variables independientes que desea.\n\nEn el Área de Texto debe ingresar M+1 número de columnas separadas por un espacio, las cuales representan los datos \ncorrespondientes a las M variables y una columna adicional para la variable de salida.\n\nDebe tener en cuenta que la última columna es el resultado de la función.\n\nEjemplo: Para la función Y=X^2 los datos de entrada correspondientes serian:\n\nNúmero Variables independientes: 1\nDatos:\n1 2\n2 4\n3 9\n4 16\n5 25\n\nImportante!! \n\n•\tCuando termine de ingresar los datos por favor deje una línea en blanco al final.\n•\tAdicionalmente usted puede seleccionar las funciones que desea utilizar para que el algoritmo genético \n\tevolucione.\n•\tCabe aclarar que para el estimador es indiferente el uso de las mayúsculas y minúsculas en los nombres \n\tde las funciones, no siendo esto mismo cierto en los nombres de las variables y constantes.\n•\tLos datos con números decimales el punto decimal se representa con un punto “.” Si se separan por una \n\tpueden haber fallos.\n•\tCuando se utilizan funciones trigonométricas, por defecto la aplicación  entiende que los argumentos \n\tque reciben éstas funciones están dados en radianes. Pero si el usuario desea ingresar los valores en \n\tgrados sexagesimales, debe realizar la conversión pertinente multiplicando el ángulo en grados por el \n\tfactor de conversión 0.0174532925, equivalente a π/180.\n•\tLog representa la función logaritmo natural.\n\n\n\n\tLECTURA DE ARCHIVOS:\n\nUsted también puede leer un archivo que tenga en su disco duro, simplemente debe dar clic en el botón \"Cargar Archivo\".\n\nLa primera línea del archivo debe ser \"NumeroVariables:#\" donde # es el número de variables independientes que usted \nva a ingresar.\nLas siguientes líneas son los datos tal cual como usted los ingresaría en el programa.\n\nEjemplo Archivo:\n_______________________________\nNumeroVariables:2\n1 2 3\n2 4 6\n3 8 11\n4 16 20\n5 32 37\n\n===============================\nRecuerde dejar una línea en blanco al final.\n\n\tCONFIGURACION\n\nExisten 3 botones los cuales nos permiten establecer 3 configuraciones por defecto, siendo la configuración 1 la más simple \ny la configuración 3 la más compleja.\nAdicionalmente si usted posee conocimientos en esta area genetica, puede modificar la configuracion deacuerdo a sus \nresultados esperados.\n\nPuede seleccionar los datos que desea ver en el programa, tales datos son: las variables de salida, las variables de entrada, \nlas operaciones definidas, la evolución del proceso, el tiempo de ejecución y la gráfica a mostrar.\n\nAdicionalmente usted tiene la posibilidad de guardar los datos obtenidos por el programa, esto se hace seleccionando la casilla \n“Guardar Datos Obtenidos”, por defecto el programa los guardara en el disco local “C:” en un documento de texto llamado \n“Resultados.txt”, sin embargo el usuario puede seleccionar la ruta donde desea guardar este archivo.");
         jScrollPane3.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -598,7 +603,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel6.setText("Tamaño Poblacion:");
 
-        jTextField2.setText("100");
+        jTextField2.setText("300");
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel7.setText("Min. Profundidad Inicial:");
@@ -610,20 +615,25 @@ public class Principal extends javax.swing.JFrame {
         jLabel9.setText("Max. Profundidad de Cruce:");
 
         jTextField3.setText("2");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
-        jTextField4.setText("4");
+        jTextField4.setText("6");
 
-        jTextField5.setText("8");
+        jTextField5.setText("10");
 
         jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel10.setText("Numero Evoluciones:");
 
-        jTextField6.setText("1800");
+        jTextField6.setText("3000");
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel11.setText("Max. Nodos:");
 
-        jTextField7.setText("21");
+        jTextField7.setText("25");
 
         jLabel12.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel12.setText("Funcion Probabilidad:");
@@ -633,17 +643,17 @@ public class Principal extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel13.setText("Probabilidad de Reproduccion:");
 
-        jTextField9.setText("0.1");
+        jTextField9.setText("0.2");
 
         jLabel14.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel14.setText("Probabilidad de Mutuacion:");
 
-        jTextField10.setText("0.1");
+        jTextField10.setText("0.2");
 
         jLabel15.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel15.setText("Probabilidad de Cruce:");
 
-        jTextField11.setText("0.9");
+        jTextField11.setText("0.8");
 
         jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 11));
         jLabel16.setText("Porcentaje de Nuevo Cromosomas:");
@@ -663,7 +673,7 @@ public class Principal extends javax.swing.JFrame {
 
         jTextField14.setText("10");
 
-        jTextField15.setText("0.0");
+        jTextField15.setText("0.000001");
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField15ActionPerformed(evt);
@@ -701,6 +711,27 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Config 1");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Config 2");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Config 3");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -708,37 +739,45 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField8)
-                        .addComponent(jTextField6))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel10))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField8)
+                                .addComponent(jTextField6))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton8)))
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -860,7 +899,12 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton6)
+                            .addComponent(jButton7)
+                            .addComponent(jButton8))))
                 .addContainerGap())
         );
 
@@ -1026,6 +1070,64 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField15ActionPerformed
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        jTextField2.setText("100");
+        jTextField3.setText("2");
+        jTextField4.setText("4");
+        jTextField5.setText("8");
+        jTextField6.setText("1800");
+        jTextField7.setText("21");
+        jTextField8.setText("0.9");
+        jTextField9.setText("0.1");
+        jTextField10.setText("0.1");
+        jTextField11.setText("0.9");
+        jTextField12.setText("0.3");
+        jTextField13.setText("-10");
+        jTextField14.setText("10");
+        jTextField15.setText("0.0");
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        jTextField2.setText("300");
+        jTextField3.setText("2");
+        jTextField4.setText("6");
+        jTextField5.setText("10");
+        jTextField6.setText("3000");
+        jTextField7.setText("25");
+        jTextField8.setText("0.9");
+        jTextField9.setText("0.2");
+        jTextField10.setText("0.2");
+        jTextField11.setText("0.8");
+        jTextField12.setText("0.3");
+        jTextField13.setText("-10");
+        jTextField14.setText("10");
+        jTextField15.setText("0.000001");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        jTextField2.setText("1000");
+        jTextField3.setText("6");
+        jTextField4.setText("12");
+        jTextField5.setText("20");
+        jTextField6.setText("5000");
+        jTextField7.setText("30");
+        jTextField8.setText("0.5");
+        jTextField9.setText("0.3");
+        jTextField10.setText("0.3");
+        jTextField11.setText("0.9");
+        jTextField12.setText("0.3");
+        jTextField13.setText("-20");
+        jTextField14.setText("20");
+        jTextField15.setText("0.000001");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1043,6 +1145,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;

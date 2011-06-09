@@ -59,7 +59,7 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="&#x9;INGRESO DE DATOS:&#xa;&#xa;Primero debe ingresar el n&#xfa;mero(M) de variables independientes que desea.&#xa;&#xa;En el &#xc1;rea de Texto debe ingresar M+1 n&#xfa;mero de columnas separadas por un espacio, las cuales representan los datos &#xa;correspondientes a las M variables y una columna adicional para la variable de salida.&#xa;&#xa;Debe tener en cuenta que la &#xfa;ltima columna es el resultado de la funci&#xf3;n.&#xa;&#xa;Ejemplo: Para la funci&#xf3;n Y=X^2 los datos de entrada correspondientes serian:&#xa;&#xa;N&#xfa;mero Variables independientes: 1&#xa;Datos:&#xa;1 2&#xa;2 4&#xa;3 9&#xa;4 16&#xa;5 25&#xa;&#xa;Importante: Cuando termine de ingresar los datos por favor deje una l&#xed;nea en blanco al final.&#xa;&#xa;Adicionalmente usted puede seleccionar las funciones que desea utilizar para que el algoritmo gen&#xe9;tico evolucione.&#xa;&#xa;&#x9;LECTURA DE ARCHIVOS:&#xa;&#xa;Usted tambi&#xe9;n puede leer un archivo que tenga en su disco duro, simplemente debe dar clic en el bot&#xf3;n &quot;Cargar Archivo&quot;.&#xa;&#xa;La primera l&#xed;nea del archivo debe ser &quot;NumeroVariables:#&quot; donde # es el n&#xfa;mero de variables independientes que usted &#xa;va a ingresar.&#xa;Las siguientes l&#xed;neas son los datos tal cual como usted los ingresar&#xed;a en el programa.&#xa;&#xa;Ejemplo Archivo:&#xa;_______________________________&#xa;NumeroVariables:2&#xa;1 2 3&#xa;2 4 6&#xa;3 8 11&#xa;4 16 20&#xa;5 32 37&#xa;&#xa;===============================&#xa;Recuerde dejar una l&#xed;nea en blanco al final.&#xa;&#xa;&#x9;CONFIGURACION&#xa;&#xa;Si usted tiene alg&#xfa;n conocimiento sobre algoritmos gen&#xe9;ticos, entonces puede utilizar la pesta&#xf1;a de configuraci&#xf3;n donde podr&#xe1; &#xa;modificar los par&#xe1;metros del algoritmo."/>
+                <Property name="text" type="java.lang.String" value="&#x9;INGRESO DE DATOS:&#xa;&#xa;Primero debe ingresar el n&#xfa;mero(M) de variables independientes que desea.&#xa;&#xa;En el &#xc1;rea de Texto debe ingresar M+1 n&#xfa;mero de columnas separadas por un espacio, las cuales representan los datos &#xa;correspondientes a las M variables y una columna adicional para la variable de salida.&#xa;&#xa;Debe tener en cuenta que la &#xfa;ltima columna es el resultado de la funci&#xf3;n.&#xa;&#xa;Ejemplo: Para la funci&#xf3;n Y=X^2 los datos de entrada correspondientes serian:&#xa;&#xa;N&#xfa;mero Variables independientes: 1&#xa;Datos:&#xa;1 2&#xa;2 4&#xa;3 9&#xa;4 16&#xa;5 25&#xa;&#xa;Importante!! &#xa;&#xa;&#x2022;&#x9;Cuando termine de ingresar los datos por favor deje una l&#xed;nea en blanco al final.&#xa;&#x2022;&#x9;Adicionalmente usted puede seleccionar las funciones que desea utilizar para que el algoritmo gen&#xe9;tico &#xa;&#x9;evolucione.&#xa;&#x2022;&#x9;Cabe aclarar que para el estimador es indiferente el uso de las may&#xfa;sculas y min&#xfa;sculas en los nombres &#xa;&#x9;de las funciones, no siendo esto mismo cierto en los nombres de las variables y constantes.&#xa;&#x2022;&#x9;Los datos con n&#xfa;meros decimales el punto decimal se representa con un punto &#x201c;.&#x201d; Si se separan por una &#xa;&#x9;pueden haber fallos.&#xa;&#x2022;&#x9;Cuando se utilizan funciones trigonom&#xe9;tricas, por defecto la aplicaci&#xf3;n  entiende que los argumentos &#xa;&#x9;que reciben &#xe9;stas funciones est&#xe1;n dados en radianes. Pero si el usuario desea ingresar los valores en &#xa;&#x9;grados sexagesimales, debe realizar la conversi&#xf3;n pertinente multiplicando el &#xe1;ngulo en grados por el &#xa;&#x9;factor de conversi&#xf3;n 0.0174532925, equivalente a &#x3c0;/180.&#xa;&#x2022;&#x9;Log representa la funci&#xf3;n logaritmo natural.&#xa;&#xa;&#xa;&#xa;&#x9;LECTURA DE ARCHIVOS:&#xa;&#xa;Usted tambi&#xe9;n puede leer un archivo que tenga en su disco duro, simplemente debe dar clic en el bot&#xf3;n &quot;Cargar Archivo&quot;.&#xa;&#xa;La primera l&#xed;nea del archivo debe ser &quot;NumeroVariables:#&quot; donde # es el n&#xfa;mero de variables independientes que usted &#xa;va a ingresar.&#xa;Las siguientes l&#xed;neas son los datos tal cual como usted los ingresar&#xed;a en el programa.&#xa;&#xa;Ejemplo Archivo:&#xa;_______________________________&#xa;NumeroVariables:2&#xa;1 2 3&#xa;2 4 6&#xa;3 8 11&#xa;4 16 20&#xa;5 32 37&#xa;&#xa;===============================&#xa;Recuerde dejar una l&#xed;nea en blanco al final.&#xa;&#xa;&#x9;CONFIGURACION&#xa;&#xa;Existen 3 botones los cuales nos permiten establecer 3 configuraciones por defecto, siendo la configuraci&#xf3;n 1 la m&#xe1;s simple &#xa;y la configuraci&#xf3;n 3 la m&#xe1;s compleja.&#xa;Adicionalmente si usted posee conocimientos en esta area genetica, puede modificar la configuracion deacuerdo a sus &#xa;resultados esperados.&#xa;&#xa;Puede seleccionar los datos que desea ver en el programa, tales datos son: las variables de salida, las variables de entrada, &#xa;las operaciones definidas, la evoluci&#xf3;n del proceso, el tiempo de ejecuci&#xf3;n y la gr&#xe1;fica a mostrar.&#xa;&#xa;Adicionalmente usted tiene la posibilidad de guardar los datos obtenidos por el programa, esto se hace seleccionando la casilla &#xa;&#x201c;Guardar Datos Obtenidos&#x201d;, por defecto el programa los guardara en el disco local &#x201c;C:&#x201d; en un documento de texto llamado &#xa;&#x201c;Resultados.txt&#x201d;, sin embargo el usuario puede seleccionar la ruta donde desea guardar este archivo."/>
               </Properties>
             </Component>
           </SubComponents>
@@ -516,39 +516,50 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField3" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField5" linkSize="1" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jTextField8" linkSize="1" alignment="1" max="32767" attributes="1"/>
-                              <Component id="jTextField6" linkSize="1" alignment="1" max="32767" attributes="1"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextField3" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField4" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField5" linkSize="1" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jTextField8" linkSize="1" alignment="1" max="32767" attributes="1"/>
+                                      <Component id="jTextField6" linkSize="1" alignment="1" max="32767" attributes="1"/>
+                                  </Group>
+                                  <Component id="jTextField2" linkSize="1" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="jTextField7" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField10" linkSize="1" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="jTextField11" linkSize="1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jTextField12" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField13" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField14" linkSize="1" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="jTextField15" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField9" linkSize="1" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="jTextField2" linkSize="1" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="jTextField7" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField10" linkSize="1" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jTextField11" linkSize="1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="jTextField12" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField13" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField14" linkSize="1" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="jTextField15" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField9" linkSize="1" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jButton6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
@@ -700,6 +711,12 @@
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextField15" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace pref="103" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -718,7 +735,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="100"/>
+                <Property name="text" type="java.lang.String" value="300"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -749,15 +766,18 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="4"/>
+                <Property name="text" type="java.lang.String" value="6"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="8"/>
+                <Property name="text" type="java.lang.String" value="10"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -770,7 +790,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="1800"/>
+                <Property name="text" type="java.lang.String" value="3000"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
@@ -783,7 +803,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="21"/>
+                <Property name="text" type="java.lang.String" value="25"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
@@ -809,7 +829,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="0.1"/>
+                <Property name="text" type="java.lang.String" value="0.2"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
@@ -822,7 +842,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField10">
               <Properties>
-                <Property name="text" type="java.lang.String" value="0.1"/>
+                <Property name="text" type="java.lang.String" value="0.2"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
@@ -835,7 +855,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField11">
               <Properties>
-                <Property name="text" type="java.lang.String" value="0.9"/>
+                <Property name="text" type="java.lang.String" value="0.8"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
@@ -887,7 +907,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="0.0"/>
+                <Property name="text" type="java.lang.String" value="0.000001"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField15ActionPerformed"/>
@@ -959,6 +979,30 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Config 1"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Config 2"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Config 3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

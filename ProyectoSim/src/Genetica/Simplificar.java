@@ -19,6 +19,8 @@ public class Simplificar {
 
     /** Funcion que simplifica una expresion */
     public static String Simplificar(String funcion){
+        System.out.println(funcion);
+
         //Proceso para redefinir la cadena a Djep
         String nuevaCadena="";
         for(int i=0;i<funcion.length();i++){
@@ -114,6 +116,9 @@ public class Simplificar {
         } catch (Exception e) {
             System.out.println("Error en la simplificacion");
         }
+
+        System.out.println(poly.toString());
+        
         return poly.toString();
     }
 
